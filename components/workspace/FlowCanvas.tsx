@@ -2,6 +2,7 @@
 
 import {
   useCallback,
+  useMemo,
   type DragEvent,
   type Dispatch,
   type RefObject,
@@ -82,10 +83,24 @@ export default function FlowCanvas({
     [screenToFlowPosition, setNodes]
   );
 
+  // Forces nodes to render with fixed light-mode colors while exporting, so
+  // the captured image doesn't pick up the viewer's OS dark-mode colors.
+  const renderedNodes = useMemo(
+    () =>
+      hideChrome
+        ? nodes.map((n) => ({ ...n, data: { ...n.data, exportMode: true } }))
+        : nodes,
+    [nodes, hideChrome]
+  );
+
   return (
-    <div ref={wrapperRef} className="h-full w-full bg-white dark:bg-zinc-950">
+    <div
+      ref={wrapperRef}
+      className="h-full w-full bg-white dark:bg-zinc-950"
+      style={hideChrome ? { backgroundColor: "#ffffff" } : undefined}
+    >
       <ReactFlow
-        nodes={nodes}
+        nodes={renderedNodes}
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
@@ -97,7 +112,7 @@ export default function FlowCanvas({
         fitView
         proOptions={{ hideAttribution: true }}
       >
-        <Background />
+        {!hideChrome && <Background />}
         {!hideChrome && (
           <>
             <Controls />

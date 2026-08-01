@@ -83,7 +83,11 @@ function WorkspaceInner({ problem }: { problem: Problem }) {
           </button>
           <ExportButtons
             wrapperRef={wrapperRef}
-            title={problem.title}
+            problem={{
+              title: problem.title,
+              description: problem.description,
+              pseudocode: problem.pseudocode,
+            }}
             onExportingChange={setHideChrome}
           />
         </div>

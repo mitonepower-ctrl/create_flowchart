@@ -91,6 +91,30 @@ const baseBoxStyle: CSSProperties = {
   maxWidth: 200,
 };
 
+// Fixed light-mode colors used to force a clean, print-friendly look when
+// exporting to JPEG/PDF, regardless of the viewer's OS color scheme (which
+// normally drives the dark: Tailwind variants below via prefers-color-scheme).
+const LIGHT_COLORS: Record<
+  FlowNodeKind,
+  { bg: string; border: string; text: string }
+> = {
+  start: { bg: "#ecfdf5", border: "#10b981", text: "#065f46" },
+  end: { bg: "#fff1f2", border: "#f43f5e", text: "#9f1239" },
+  process: { bg: "#f0f9ff", border: "#0ea5e9", text: "#0c4a6e" },
+  io: { bg: "#f0fdfa", border: "#14b8a6", text: "#134e4a" },
+  decision: { bg: "#fffbeb", border: "#f59e0b", text: "#78350f" },
+  loop: { bg: "#f5f3ff", border: "#8b5cf6", text: "#4c1d95" },
+};
+
+function useExportStyles(kind: FlowNodeKind, exportMode: boolean) {
+  if (!exportMode) return { shape: undefined, text: undefined };
+  const c = LIGHT_COLORS[kind];
+  return {
+    shape: { backgroundColor: c.bg, borderColor: c.border } as CSSProperties,
+    text: { color: c.text } as CSSProperties,
+  };
+}
+
 export const StartEndNode = memo(function StartEndNode({
   id,
   data,
@@ -103,11 +127,16 @@ export const StartEndNode = memo(function StartEndNode({
     label
   );
   const isStart = kind === "start";
+  const exportStyles = useExportStyles(kind, Boolean(data.exportMode));
 
   return (
     <div
       onDoubleClick={start}
-      style={baseBoxStyle}
+      style={{
+        ...baseBoxStyle,
+        ...exportStyles.shape,
+        ...exportStyles.text,
+      }}
       className={`flex items-center justify-center rounded-full border-2 px-4 py-2.5 text-center text-sm font-semibold shadow-sm ${
         isStart
           ? "border-emerald-500 bg-emerald-50 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300"
@@ -140,11 +169,12 @@ export const ProcessNode = memo(function ProcessNode({
     id,
     label
   );
+  const exportStyles = useExportStyles("process", Boolean(data.exportMode));
 
   return (
     <div
       onDoubleClick={start}
-      style={baseBoxStyle}
+      style={{ ...baseBoxStyle, ...exportStyles.shape, ...exportStyles.text }}
       className="flex items-center justify-center rounded-md border-2 border-sky-500 bg-sky-50 px-4 py-2.5 text-center text-sm font-medium text-sky-900 shadow-sm dark:bg-sky-950/40 dark:text-sky-200"
     >
       <Handle type="target" position={Position.Top} />
@@ -171,6 +201,7 @@ export const IoNode = memo(function IoNode({ id, data }: NodeProps) {
     id,
     label
   );
+  const exportStyles = useExportStyles("io", Boolean(data.exportMode));
 
   return (
     <div
@@ -181,9 +212,12 @@ export const IoNode = memo(function IoNode({ id, data }: NodeProps) {
       <Handle type="target" position={Position.Top} />
       <div
         className="absolute inset-0 border-2 border-teal-500 bg-teal-50 shadow-sm dark:bg-teal-950/40"
-        style={{ transform: "skewX(-18deg)" }}
+        style={{ transform: "skewX(-18deg)", ...exportStyles.shape }}
       />
-      <div className="relative z-10 px-4 py-2.5 text-center text-sm font-medium text-teal-900 dark:text-teal-200">
+      <div
+        className="relative z-10 px-4 py-2.5 text-center text-sm font-medium text-teal-900 dark:text-teal-200"
+        style={exportStyles.text}
+      >
         {editing ? (
           <LabelEditor
             editing={editing}
@@ -210,6 +244,7 @@ export const DecisionNode = memo(function DecisionNode({
     id,
     label
   );
+  const exportStyles = useExportStyles("decision", Boolean(data.exportMode));
 
   return (
     <div
@@ -218,8 +253,14 @@ export const DecisionNode = memo(function DecisionNode({
       style={{ width: 160, height: 120 }}
     >
       <Handle type="target" position={Position.Top} />
-      <div className="absolute inset-4 rotate-45 rounded-md border-2 border-amber-500 bg-amber-50 shadow-sm dark:bg-amber-950/40" />
-      <div className="relative z-10 flex w-[110px] items-center justify-center px-1 text-center text-xs font-medium text-amber-900 dark:text-amber-200">
+      <div
+        className="absolute inset-4 rotate-45 rounded-md border-2 border-amber-500 bg-amber-50 shadow-sm dark:bg-amber-950/40"
+        style={exportStyles.shape}
+      />
+      <div
+        className="relative z-10 flex w-[110px] items-center justify-center px-1 text-center text-xs font-medium text-amber-900 dark:text-amber-200"
+        style={exportStyles.text}
+      >
         {editing ? (
           <LabelEditor
             editing={editing}
@@ -235,10 +276,16 @@ export const DecisionNode = memo(function DecisionNode({
       <Handle type="source" position={Position.Left} id="no" />
       <Handle type="source" position={Position.Right} id="yes" />
       <Handle type="source" position={Position.Bottom} id="bottom" />
-      <span className="pointer-events-none absolute left-1 top-1/2 -translate-y-1/2 -translate-x-full pr-1 text-[10px] font-semibold text-amber-700 dark:text-amber-400">
+      <span
+        className="pointer-events-none absolute left-1 top-1/2 -translate-y-1/2 -translate-x-full pr-1 text-[10px] font-semibold text-amber-700 dark:text-amber-400"
+        style={exportStyles.text}
+      >
         ไม่ใช่
       </span>
-      <span className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 translate-x-full pl-1 text-[10px] font-semibold text-amber-700 dark:text-amber-400">
+      <span
+        className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 translate-x-full pl-1 text-[10px] font-semibold text-amber-700 dark:text-amber-400"
+        style={exportStyles.text}
+      >
         ใช่
       </span>
     </div>
@@ -253,6 +300,7 @@ export const LoopNode = memo(function LoopNode({ id, data }: NodeProps) {
     id,
     label
   );
+  const exportStyles = useExportStyles("loop", Boolean(data.exportMode));
 
   return (
     <div
@@ -266,9 +314,13 @@ export const LoopNode = memo(function LoopNode({ id, data }: NodeProps) {
         style={{
           clipPath:
             "polygon(20% 0%, 80% 0%, 100% 50%, 80% 100%, 20% 100%, 0% 50%)",
+          ...exportStyles.shape,
         }}
       />
-      <div className="relative z-10 px-5 py-2.5 text-center text-sm font-medium text-violet-900 dark:text-violet-200">
+      <div
+        className="relative z-10 px-5 py-2.5 text-center text-sm font-medium text-violet-900 dark:text-violet-200"
+        style={exportStyles.text}
+      >
         {editing ? (
           <LabelEditor
             editing={editing}

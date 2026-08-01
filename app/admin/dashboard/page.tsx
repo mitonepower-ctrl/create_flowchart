@@ -1,4 +1,5 @@
 import AdminNav from "@/components/admin/AdminNav";
+import ResetStatsButton from "@/components/admin/ResetStatsButton";
 import { getStats } from "@/lib/stats";
 
 export const revalidate = 0;
@@ -36,7 +37,10 @@ export default async function AdminDashboardPage() {
     <div className="flex flex-1 flex-col">
       <AdminNav />
       <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">
-        <h1 className="mb-6 text-2xl font-bold">แดชบอร์ด</h1>
+        <div className="mb-6 flex items-center justify-between">
+          <h1 className="text-2xl font-bold">แดชบอร์ด</h1>
+          <ResetStatsButton />
+        </div>
 
         <div className="mb-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
           <StatCard label="จำนวนครั้งที่ทำโจทย์" value={stats.totalAttempts} />

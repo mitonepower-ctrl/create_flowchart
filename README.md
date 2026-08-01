@@ -64,6 +64,7 @@ Visit `http://localhost:3000` for the student view, or
   - `app/admin/*` — protected admin dashboard and problem CRUD
   - `app/api/evaluate` — POST: sends the flowchart + pseudocode to Gemini, records the attempt
   - `app/api/stats` — GET: aggregated stats for the admin dashboard
+  - `app/api/stats/reset` — DELETE: admin-only, clears all rows in `user_attempts`
   - `app/api/admin/*` — problem CRUD + AI pseudocode generation (admin-only)
 - `components/workspace/` — React Flow canvas, node types, node palette, AI panel, export buttons
 - `lib/supabase/` — browser / server / admin (service-role) Supabase clients

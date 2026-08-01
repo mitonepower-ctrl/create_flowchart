@@ -5,1268 +5,1266 @@ export interface SeedProblem {
 }
 
 // ---------------------------------------------------------------------------
-// SEQUENCE - straight-line logic, no branching or looping (34 problems)
+// ลำดับ (Sequence) - ตรรกะแบบเรียงตามลำดับ ไม่มีการแตกกิ่งหรือทำซ้ำ (34 ข้อ)
 // ---------------------------------------------------------------------------
 export const sequenceProblems: SeedProblem[] = [
   {
-    title: "Add Two Numbers",
-    description: "Read two numbers from the user and display their sum.",
-    pseudocode: `START
-INPUT a, b
+    title: "บวกเลขสองจำนวน",
+    description: "รับค่าตัวเลขสองจำนวนจากผู้ใช้ แล้วแสดงผลรวมของทั้งสองจำนวน",
+    pseudocode: `เริ่มต้น
+รับค่า a, b
 sum = a + b
-OUTPUT sum
-END`,
+แสดงผล sum
+จบ`,
   },
   {
-    title: "Subtract Two Numbers",
-    description: "Read two numbers and display the result of subtracting the second from the first.",
-    pseudocode: `START
-INPUT a, b
-difference = a - b
-OUTPUT difference
-END`,
+    title: "ลบเลขสองจำนวน",
+    description: "รับค่าตัวเลขสองจำนวน แล้วแสดงผลลัพธ์ของการนำจำนวนแรกลบด้วยจำนวนที่สอง",
+    pseudocode: `เริ่มต้น
+รับค่า a, b
+diff = a - b
+แสดงผล diff
+จบ`,
   },
   {
-    title: "Multiply Two Numbers",
-    description: "Read two numbers from the user and display their product.",
-    pseudocode: `START
-INPUT a, b
+    title: "คูณเลขสองจำนวน",
+    description: "รับค่าตัวเลขสองจำนวนจากผู้ใช้ แล้วแสดงผลคูณของทั้งสองจำนวน",
+    pseudocode: `เริ่มต้น
+รับค่า a, b
 product = a * b
-OUTPUT product
-END`,
+แสดงผล product
+จบ`,
   },
   {
-    title: "Divide Two Numbers",
-    description: "Read two numbers and display the result of dividing the first by the second.",
-    pseudocode: `START
-INPUT a, b
+    title: "หารเลขสองจำนวน",
+    description: "รับค่าตัวเลขสองจำนวน แล้วแสดงผลลัพธ์ของการนำจำนวนแรกหารด้วยจำนวนที่สอง",
+    pseudocode: `เริ่มต้น
+รับค่า a, b
 quotient = a / b
-OUTPUT quotient
-END`,
+แสดงผล quotient
+จบ`,
   },
   {
-    title: "Average of Two Numbers",
-    description: "Read two numbers and display their average.",
-    pseudocode: `START
-INPUT a, b
+    title: "ค่าเฉลี่ยของเลขสองจำนวน",
+    description: "รับค่าตัวเลขสองจำนวน แล้วแสดงผลค่าเฉลี่ยของทั้งสองจำนวน",
+    pseudocode: `เริ่มต้น
+รับค่า a, b
 average = (a + b) / 2
-OUTPUT average
-END`,
+แสดงผล average
+จบ`,
   },
   {
-    title: "Average of Three Numbers",
-    description: "Read three numbers and display their average.",
-    pseudocode: `START
-INPUT a, b, c
+    title: "ค่าเฉลี่ยของเลขสามจำนวน",
+    description: "รับค่าตัวเลขสามจำนวน แล้วแสดงผลค่าเฉลี่ยของทั้งสามจำนวน",
+    pseudocode: `เริ่มต้น
+รับค่า a, b, c
 average = (a + b + c) / 3
-OUTPUT average
-END`,
+แสดงผล average
+จบ`,
   },
   {
-    title: "Swap Two Variables",
-    description: "Read two values and display them after swapping their positions, using a temporary variable.",
-    pseudocode: `START
-INPUT a, b
+    title: "สลับค่าตัวแปรสองตัว",
+    description: "รับค่าตัวแปรสองตัว แล้วแสดงผลค่าหลังจากสลับตำแหน่งกัน โดยใช้ตัวแปรพักค่า",
+    pseudocode: `เริ่มต้น
+รับค่า a, b
 temp = a
 a = b
 b = temp
-OUTPUT a, b
-END`,
+แสดงผล a, b
+จบ`,
   },
   {
-    title: "Celsius to Fahrenheit",
-    description: "Read a temperature in Celsius and convert it to Fahrenheit.",
-    pseudocode: `START
-INPUT celsius
+    title: "แปลงเซลเซียสเป็นฟาเรนไฮต์",
+    description: "รับค่าอุณหภูมิเป็นองศาเซลเซียส แล้วแปลงเป็นองศาฟาเรนไฮต์",
+    pseudocode: `เริ่มต้น
+รับค่า celsius
 fahrenheit = (celsius * 9 / 5) + 32
-OUTPUT fahrenheit
-END`,
+แสดงผล fahrenheit
+จบ`,
   },
   {
-    title: "Fahrenheit to Celsius",
-    description: "Read a temperature in Fahrenheit and convert it to Celsius.",
-    pseudocode: `START
-INPUT fahrenheit
+    title: "แปลงฟาเรนไฮต์เป็นเซลเซียส",
+    description: "รับค่าอุณหภูมิเป็นองศาฟาเรนไฮต์ แล้วแปลงเป็นองศาเซลเซียส",
+    pseudocode: `เริ่มต้น
+รับค่า fahrenheit
 celsius = (fahrenheit - 32) * 5 / 9
-OUTPUT celsius
-END`,
+แสดงผล celsius
+จบ`,
   },
   {
-    title: "Kilometers to Miles",
-    description: "Read a distance in kilometers and convert it to miles.",
-    pseudocode: `START
-INPUT km
+    title: "แปลงกิโลเมตรเป็นไมล์",
+    description: "รับค่าระยะทางเป็นกิโลเมตร แล้วแปลงเป็นไมล์",
+    pseudocode: `เริ่มต้น
+รับค่า km
 miles = km * 0.621371
-OUTPUT miles
-END`,
+แสดงผล miles
+จบ`,
   },
   {
-    title: "Kilograms to Pounds",
-    description: "Read a weight in kilograms and convert it to pounds.",
-    pseudocode: `START
-INPUT kg
+    title: "แปลงกิโลกรัมเป็นปอนด์",
+    description: "รับค่าน้ำหนักเป็นกิโลกรัม แล้วแปลงเป็นปอนด์",
+    pseudocode: `เริ่มต้น
+รับค่า kg
 pounds = kg * 2.20462
-OUTPUT pounds
-END`,
+แสดงผล pounds
+จบ`,
   },
   {
-    title: "Minutes to Hours and Minutes",
-    description: "Read a duration in total minutes and display it as whole hours and remaining minutes.",
-    pseudocode: `START
-INPUT totalMinutes
-hours = totalMinutes / 60 (integer division)
-minutes = totalMinutes MOD 60
-OUTPUT hours, minutes
-END`,
+    title: "แปลงนาทีเป็นชั่วโมงและนาที",
+    description: "รับค่าจำนวนนาทีทั้งหมด แล้วแสดงผลเป็นจำนวนชั่วโมงเต็มและนาทีที่เหลือ",
+    pseudocode: `เริ่มต้น
+รับค่า totalMinutes
+hours = totalMinutes / 60 (หารเอาจำนวนเต็ม)
+minutes = totalMinutes mod 60
+แสดงผล hours, minutes
+จบ`,
   },
   {
-    title: "Seconds to H:M:S",
-    description: "Read a duration in total seconds and display it as hours, minutes, and seconds.",
-    pseudocode: `START
-INPUT totalSeconds
-hours = totalSeconds / 3600 (integer division)
-remaining = totalSeconds MOD 3600
-minutes = remaining / 60 (integer division)
-seconds = remaining MOD 60
-OUTPUT hours, minutes, seconds
-END`,
+    title: "แปลงวินาทีเป็น ชั่วโมง:นาที:วินาที",
+    description: "รับค่าจำนวนวินาทีทั้งหมด แล้วแสดงผลเป็นชั่วโมง นาที และวินาที",
+    pseudocode: `เริ่มต้น
+รับค่า totalSeconds
+hours = totalSeconds / 3600 (หารเอาจำนวนเต็ม)
+remaining = totalSeconds mod 3600
+minutes = remaining / 60 (หารเอาจำนวนเต็ม)
+seconds = remaining mod 60
+แสดงผล hours, minutes, seconds
+จบ`,
   },
   {
-    title: "Perimeter of a Rectangle",
-    description: "Read the width and height of a rectangle and calculate its perimeter.",
-    pseudocode: `START
-INPUT width, height
+    title: "หาเส้นรอบรูปสี่เหลี่ยมผืนผ้า",
+    description: "รับค่าความกว้างและความยาวของสี่เหลี่ยมผืนผ้า แล้วคำนวณเส้นรอบรูป",
+    pseudocode: `เริ่มต้น
+รับค่า width, height
 perimeter = 2 * (width + height)
-OUTPUT perimeter
-END`,
+แสดงผล perimeter
+จบ`,
   },
   {
-    title: "Area of a Rectangle",
-    description: "Read the width and height of a rectangle and calculate its area.",
-    pseudocode: `START
-INPUT width, height
+    title: "หาพื้นที่สี่เหลี่ยมผืนผ้า",
+    description: "รับค่าความกว้างและความยาวของสี่เหลี่ยมผืนผ้า แล้วคำนวณพื้นที่",
+    pseudocode: `เริ่มต้น
+รับค่า width, height
 area = width * height
-OUTPUT area
-END`,
+แสดงผล area
+จบ`,
   },
   {
-    title: "Area of a Triangle",
-    description: "Read the base and height of a triangle and calculate its area.",
-    pseudocode: `START
-INPUT base, height
+    title: "หาพื้นที่สามเหลี่ยม",
+    description: "รับค่าความยาวฐานและความสูงของสามเหลี่ยม แล้วคำนวณพื้นที่",
+    pseudocode: `เริ่มต้น
+รับค่า base, height
 area = (base * height) / 2
-OUTPUT area
-END`,
+แสดงผล area
+จบ`,
   },
   {
-    title: "Area of a Circle",
-    description: "Read the radius of a circle and calculate its area.",
-    pseudocode: `START
-INPUT radius
+    title: "หาพื้นที่วงกลม",
+    description: "รับค่ารัศมีของวงกลม แล้วคำนวณพื้นที่",
+    pseudocode: `เริ่มต้น
+รับค่า radius
 area = 3.14159 * radius * radius
-OUTPUT area
-END`,
+แสดงผล area
+จบ`,
   },
   {
-    title: "Circumference of a Circle",
-    description: "Read the radius of a circle and calculate its circumference.",
-    pseudocode: `START
-INPUT radius
+    title: "หาเส้นรอบวงกลม",
+    description: "รับค่ารัศมีของวงกลม แล้วคำนวณความยาวเส้นรอบวง",
+    pseudocode: `เริ่มต้น
+รับค่า radius
 circumference = 2 * 3.14159 * radius
-OUTPUT circumference
-END`,
+แสดงผล circumference
+จบ`,
   },
   {
-    title: "Volume of a Cube",
-    description: "Read the side length of a cube and calculate its volume.",
-    pseudocode: `START
-INPUT side
+    title: "หาปริมาตรลูกบาศก์",
+    description: "รับค่าความยาวด้านของลูกบาศก์ แล้วคำนวณปริมาตร",
+    pseudocode: `เริ่มต้น
+รับค่า side
 volume = side * side * side
-OUTPUT volume
-END`,
+แสดงผล volume
+จบ`,
   },
   {
-    title: "Volume of a Cylinder",
-    description: "Read the radius and height of a cylinder and calculate its volume.",
-    pseudocode: `START
-INPUT radius, height
+    title: "หาปริมาตรทรงกระบอก",
+    description: "รับค่ารัศมีและความสูงของทรงกระบอก แล้วคำนวณปริมาตร",
+    pseudocode: `เริ่มต้น
+รับค่า radius, height
 volume = 3.14159 * radius * radius * height
-OUTPUT volume
-END`,
+แสดงผล volume
+จบ`,
   },
   {
-    title: "Simple Interest",
-    description: "Read a principal amount, interest rate, and time (years), then calculate simple interest.",
-    pseudocode: `START
-INPUT principal, rate, time
+    title: "คำนวณดอกเบี้ยแบบธรรมดา",
+    description: "รับค่าเงินต้น อัตราดอกเบี้ย และระยะเวลา (ปี) แล้วคำนวณดอกเบี้ยแบบธรรมดา",
+    pseudocode: `เริ่มต้น
+รับค่า principal, rate, time
 interest = (principal * rate * time) / 100
-OUTPUT interest
-END`,
+แสดงผล interest
+จบ`,
   },
   {
-    title: "Total Price With Sales Tax",
-    description: "Read a price and a tax rate (%), then calculate the total price including tax.",
-    pseudocode: `START
-INPUT price, taxRate
+    title: "คำนวณราคารวมภาษี",
+    description: "รับค่าราคาสินค้าและอัตราภาษี (%) แล้วคำนวณราคารวมภาษี",
+    pseudocode: `เริ่มต้น
+รับค่า price, taxRate
 taxAmount = price * (taxRate / 100)
 total = price + taxAmount
-OUTPUT total
-END`,
+แสดงผล total
+จบ`,
   },
   {
-    title: "Restaurant Bill With Tip",
-    description: "Read a bill amount and a tip percentage, then calculate the total amount to pay.",
-    pseudocode: `START
-INPUT billAmount, tipPercent
+    title: "คำนวณค่าอาหารรวมทิป",
+    description: "รับค่ายอดค่าอาหารและเปอร์เซ็นต์ทิป แล้วคำนวณยอดที่ต้องจ่ายทั้งหมด",
+    pseudocode: `เริ่มต้น
+รับค่า billAmount, tipPercent
 tipAmount = billAmount * (tipPercent / 100)
 total = billAmount + tipAmount
-OUTPUT total
-END`,
+แสดงผล total
+จบ`,
   },
   {
-    title: "Age in Days",
-    description: "Read a person's age in years and estimate their age in days (using 365.25 days per year).",
-    pseudocode: `START
-INPUT ageInYears
+    title: "แปลงอายุเป็นจำนวนวัน",
+    description: "รับค่าอายุของบุคคลเป็นปี แล้วประมาณค่าอายุเป็นจำนวนวัน (ใช้ 365.25 วันต่อปี)",
+    pseudocode: `เริ่มต้น
+รับค่า ageInYears
 ageInDays = ageInYears * 365.25
-OUTPUT ageInDays
-END`,
+แสดงผล ageInDays
+จบ`,
   },
   {
-    title: "Distance Between Two Points on a Line",
-    description: "Read two positions on a number line and calculate the distance between them.",
-    pseudocode: `START
-INPUT x1, x2
-distance = ABS(x2 - x1)
-OUTPUT distance
-END`,
+    title: "หาระยะห่างระหว่างจุดบนเส้นจำนวน",
+    description: "รับค่าตำแหน่งสองจุดบนเส้นจำนวน แล้วคำนวณระยะห่างระหว่างจุดทั้งสอง",
+    pseudocode: `เริ่มต้น
+รับค่า x1, x2
+distance = |x2 - x1|
+แสดงผล distance
+จบ`,
   },
   {
-    title: "Distance Between Two Points (2D)",
-    description: "Read the coordinates of two points and calculate the straight-line distance between them.",
-    pseudocode: `START
-INPUT x1, y1, x2, y2
+    title: "หาระยะห่างระหว่างจุดสองมิติ",
+    description: "รับค่าพิกัดของจุดสองจุด แล้วคำนวณระยะห่างเป็นเส้นตรงระหว่างจุดทั้งสอง",
+    pseudocode: `เริ่มต้น
+รับค่า x1, y1, x2, y2
 dx = x2 - x1
 dy = y2 - y1
-distance = SQRT(dx * dx + dy * dy)
-OUTPUT distance
-END`,
+distance = รากที่สอง(dx * dx + dy * dy)
+แสดงผล distance
+จบ`,
   },
   {
-    title: "Slope Between Two Points",
-    description: "Read the coordinates of two points and calculate the slope of the line through them.",
-    pseudocode: `START
-INPUT x1, y1, x2, y2
+    title: "หาความชันระหว่างจุดสองจุด",
+    description: "รับค่าพิกัดของจุดสองจุด แล้วคำนวณความชันของเส้นตรงที่ลากผ่านจุดทั้งสอง",
+    pseudocode: `เริ่มต้น
+รับค่า x1, y1, x2, y2
 slope = (y2 - y1) / (x2 - x1)
-OUTPUT slope
-END`,
+แสดงผล slope
+จบ`,
   },
   {
-    title: "Final Velocity",
-    description: "Read an initial velocity, acceleration, and time, then calculate the final velocity using v = u + at.",
-    pseudocode: `START
-INPUT initialVelocity, acceleration, time
+    title: "หาความเร็วสุดท้าย",
+    description: "รับค่าความเร็วต้น ความเร่ง และเวลา แล้วคำนวณความเร็วสุดท้ายด้วยสูตร v = u + at",
+    pseudocode: `เริ่มต้น
+รับค่า initialVelocity, acceleration, time
 finalVelocity = initialVelocity + (acceleration * time)
-OUTPUT finalVelocity
-END`,
+แสดงผล finalVelocity
+จบ`,
   },
   {
-    title: "Body Mass Index",
-    description: "Read a person's weight (kg) and height (m), then calculate their BMI.",
-    pseudocode: `START
-INPUT weightKg, heightM
+    title: "คำนวณดัชนีมวลกาย (BMI)",
+    description: "รับค่าน้ำหนัก (กก.) และส่วนสูง (ม.) ของบุคคล แล้วคำนวณค่า BMI",
+    pseudocode: `เริ่มต้น
+รับค่า weightKg, heightM
 bmi = weightKg / (heightM * heightM)
-OUTPUT bmi
-END`,
+แสดงผล bmi
+จบ`,
   },
   {
-    title: "Tiles Needed for a Floor",
-    description: "Read the floor area and the area of a single tile, then calculate how many tiles are needed.",
-    pseudocode: `START
-INPUT floorArea, tileArea
-tilesNeeded = CEILING(floorArea / tileArea)
-OUTPUT tilesNeeded
-END`,
+    title: "คำนวณจำนวนกระเบื้องที่ต้องใช้",
+    description: "รับค่าพื้นที่ห้องและพื้นที่กระเบื้องหนึ่งแผ่น แล้วคำนวณจำนวนกระเบื้องที่ต้องใช้",
+    pseudocode: `เริ่มต้น
+รับค่า floorArea, tileArea
+tilesNeeded = ปัดเศษขึ้น(floorArea / tileArea)
+แสดงผล tilesNeeded
+จบ`,
   },
   {
-    title: "Dual Temperature Conversion",
-    description: "Read a Celsius temperature and display it converted to both Fahrenheit and Kelvin.",
-    pseudocode: `START
-INPUT celsius
+    title: "แปลงอุณหภูมิสองหน่วยพร้อมกัน",
+    description: "รับค่าอุณหภูมิเป็นเซลเซียส แล้วแสดงผลเป็นทั้งฟาเรนไฮต์และเคลวิน",
+    pseudocode: `เริ่มต้น
+รับค่า celsius
 fahrenheit = (celsius * 9 / 5) + 32
 kelvin = celsius + 273.15
-OUTPUT fahrenheit, kelvin
-END`,
+แสดงผล fahrenheit, kelvin
+จบ`,
   },
   {
-    title: "Net Salary After Deduction",
-    description: "Read a gross salary and a fixed deduction amount, then calculate the net salary.",
-    pseudocode: `START
-INPUT grossSalary, deduction
+    title: "คำนวณเงินเดือนสุทธิหลังหักค่าใช้จ่าย",
+    description: "รับค่าเงินเดือนรวมและยอดหักคงที่ แล้วคำนวณเงินเดือนสุทธิ",
+    pseudocode: `เริ่มต้น
+รับค่า grossSalary, deduction
 netSalary = grossSalary - deduction
-OUTPUT netSalary
-END`,
+แสดงผล netSalary
+จบ`,
   },
   {
-    title: "Compound Interest (One Period)",
-    description: "Read a principal amount, interest rate, and number of compounding periods, then calculate the final amount.",
-    pseudocode: `START
-INPUT principal, rate, periods
-amount = principal * (1 + rate / 100) ^ periods
-OUTPUT amount
-END`,
+    title: "คำนวณดอกเบี้ยทบต้น (หนึ่งงวด)",
+    description: "รับค่าเงินต้น อัตราดอกเบี้ย และจำนวนงวด แล้วคำนวณยอดเงินสุดท้าย",
+    pseudocode: `เริ่มต้น
+รับค่า principal, rate, periods
+amount = principal * (1 + rate / 100) ยกกำลัง periods
+แสดงผล amount
+จบ`,
   },
   {
-    title: "Total Cost of N Items",
-    description: "Read the price of a single item and the quantity purchased, then calculate the total cost.",
-    pseudocode: `START
-INPUT unitPrice, quantity
+    title: "คำนวณราคารวมของสินค้า N ชิ้น",
+    description: "รับค่าราคาต่อชิ้นและจำนวนที่ซื้อ แล้วคำนวณราคารวมทั้งหมด",
+    pseudocode: `เริ่มต้น
+รับค่า unitPrice, quantity
 totalCost = unitPrice * quantity
-OUTPUT totalCost
-END`,
+แสดงผล totalCost
+จบ`,
   },
 ];
 
 // ---------------------------------------------------------------------------
-// CONDITION - branching logic with IF / ELSE (33 problems)
+// เงื่อนไข (Condition) - ตรรกะแบบแตกกิ่งด้วย ถ้า/มิฉะนั้น (33 ข้อ)
 // ---------------------------------------------------------------------------
 export const conditionProblems: SeedProblem[] = [
   {
-    title: "Positive, Negative, or Zero",
-    description: "Read a number and determine whether it is positive, negative, or zero.",
-    pseudocode: `START
-INPUT number
-IF number > 0 THEN
-    OUTPUT "Positive"
-ELSE IF number < 0 THEN
-    OUTPUT "Negative"
-ELSE
-    OUTPUT "Zero"
-END IF
-END`,
+    title: "ตรวจสอบจำนวนบวก ลบ หรือศูนย์",
+    description: "รับค่าตัวเลข แล้วตรวจสอบว่าเป็นจำนวนบวก จำนวนลบ หรือศูนย์",
+    pseudocode: `เริ่มต้น
+รับค่า number
+ถ้า number > 0 แล้ว
+    แสดงผล "จำนวนบวก"
+มิฉะนั้นถ้า number < 0 แล้ว
+    แสดงผล "จำนวนลบ"
+มิฉะนั้น
+    แสดงผล "ศูนย์"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Even or Odd",
-    description: "Read a number and determine whether it is even or odd.",
-    pseudocode: `START
-INPUT number
-IF number MOD 2 = 0 THEN
-    OUTPUT "Even"
-ELSE
-    OUTPUT "Odd"
-END IF
-END`,
+    title: "ตรวจสอบเลขคู่หรือเลขคี่",
+    description: "รับค่าตัวเลข แล้วตรวจสอบว่าเป็นเลขคู่หรือเลขคี่",
+    pseudocode: `เริ่มต้น
+รับค่า number
+ถ้า number mod 2 = 0 แล้ว
+    แสดงผล "เลขคู่"
+มิฉะนั้น
+    แสดงผล "เลขคี่"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Larger of Two Numbers",
-    description: "Read two numbers and determine which one is larger.",
-    pseudocode: `START
-INPUT a, b
-IF a > b THEN
-    OUTPUT a, "is larger"
-ELSE IF b > a THEN
-    OUTPUT b, "is larger"
-ELSE
-    OUTPUT "Both are equal"
-END IF
-END`,
+    title: "หาจำนวนที่มากกว่าระหว่างเลขสองจำนวน",
+    description: "รับค่าตัวเลขสองจำนวน แล้วตรวจสอบว่าจำนวนใดมากกว่ากัน",
+    pseudocode: `เริ่มต้น
+รับค่า a, b
+ถ้า a > b แล้ว
+    แสดงผล a, "มากกว่า"
+มิฉะนั้นถ้า b > a แล้ว
+    แสดงผล b, "มากกว่า"
+มิฉะนั้น
+    แสดงผล "ค่าเท่ากัน"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Largest of Three Numbers",
-    description: "Read three numbers and determine which one is the largest.",
-    pseudocode: `START
-INPUT a, b, c
-IF a >= b AND a >= c THEN
-    OUTPUT a, "is the largest"
-ELSE IF b >= a AND b >= c THEN
-    OUTPUT b, "is the largest"
-ELSE
-    OUTPUT c, "is the largest"
-END IF
-END`,
+    title: "หาจำนวนที่มากที่สุดในสามจำนวน",
+    description: "รับค่าตัวเลขสามจำนวน แล้วตรวจสอบว่าจำนวนใดมากที่สุด",
+    pseudocode: `เริ่มต้น
+รับค่า a, b, c
+ถ้า a >= b และ a >= c แล้ว
+    แสดงผล a, "มากที่สุด"
+มิฉะนั้นถ้า b >= a และ b >= c แล้ว
+    แสดงผล b, "มากที่สุด"
+มิฉะนั้น
+    แสดงผล c, "มากที่สุด"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Leap Year Check",
-    description: "Read a year and determine whether it is a leap year.",
-    pseudocode: `START
-INPUT year
-IF (year MOD 4 = 0 AND year MOD 100 != 0) OR (year MOD 400 = 0) THEN
-    OUTPUT "Leap year"
-ELSE
-    OUTPUT "Not a leap year"
-END IF
-END`,
+    title: "ตรวจสอบปีอธิกสุรทิน",
+    description: "รับค่าปี ค.ศ. แล้วตรวจสอบว่าเป็นปีอธิกสุรทินหรือไม่",
+    pseudocode: `เริ่มต้น
+รับค่า year
+ถ้า (year mod 4 = 0 และ year mod 100 != 0) หรือ (year mod 400 = 0) แล้ว
+    แสดงผล "เป็นปีอธิกสุรทิน"
+มิฉะนั้น
+    แสดงผล "ไม่ใช่ปีอธิกสุรทิน"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Exam Score to Letter Grade",
-    description: "Read a numeric exam score (0-100) and convert it to a letter grade (A, B, C, D, or F).",
-    pseudocode: `START
-INPUT score
-IF score >= 90 THEN
+    title: "แปลงคะแนนสอบเป็นเกรด",
+    description: "รับค่าคะแนนสอบ (0-100) แล้วแปลงเป็นเกรด A, B, C, D หรือ F",
+    pseudocode: `เริ่มต้น
+รับค่า score
+ถ้า score >= 90 แล้ว
     grade = "A"
-ELSE IF score >= 80 THEN
+มิฉะนั้นถ้า score >= 80 แล้ว
     grade = "B"
-ELSE IF score >= 70 THEN
+มิฉะนั้นถ้า score >= 70 แล้ว
     grade = "C"
-ELSE IF score >= 60 THEN
+มิฉะนั้นถ้า score >= 60 แล้ว
     grade = "D"
-ELSE
+มิฉะนั้น
     grade = "F"
-END IF
-OUTPUT grade
-END`,
+จบเงื่อนไข
+แสดงผล grade
+จบ`,
   },
   {
-    title: "Voting Eligibility",
-    description: "Read a person's age and determine if they are eligible to vote (18 or older).",
-    pseudocode: `START
-INPUT age
-IF age >= 18 THEN
-    OUTPUT "Eligible to vote"
-ELSE
-    OUTPUT "Not eligible to vote"
-END IF
-END`,
+    title: "ตรวจสอบสิทธิ์การเลือกตั้ง",
+    description: "รับค่าอายุของบุคคล แล้วตรวจสอบว่ามีสิทธิ์เลือกตั้งหรือไม่ (อายุ 18 ปีขึ้นไป)",
+    pseudocode: `เริ่มต้น
+รับค่า age
+ถ้า age >= 18 แล้ว
+    แสดงผล "มีสิทธิ์เลือกตั้ง"
+มิฉะนั้น
+    แสดงผล "ไม่มีสิทธิ์เลือกตั้ง"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Movie Ticket Price by Age",
-    description: "Read a customer's age and determine the ticket price: child (under 12), adult (12-64), or senior (65+).",
-    pseudocode: `START
-INPUT age
-IF age < 12 THEN
-    price = 5
-ELSE IF age <= 64 THEN
-    price = 12
-ELSE
-    price = 8
-END IF
-OUTPUT price
-END`,
+    title: "หาราคาตั๋วหนังตามช่วงอายุ",
+    description: "รับค่าอายุของลูกค้า แล้วตรวจสอบราคาตั๋ว: เด็ก (ต่ำกว่า 12 ปี), ผู้ใหญ่ (12-64 ปี), ผู้สูงอายุ (65 ปีขึ้นไป)",
+    pseudocode: `เริ่มต้น
+รับค่า age
+ถ้า age < 12 แล้ว
+    price = 50
+มิฉะนั้นถ้า age <= 64 แล้ว
+    price = 120
+มิฉะนั้น
+    price = 80
+จบเงื่อนไข
+แสดงผล price
+จบ`,
   },
   {
-    title: "Valid Triangle Check",
-    description: "Read three side lengths and determine whether they can form a valid triangle.",
-    pseudocode: `START
-INPUT sideA, sideB, sideC
-IF (sideA + sideB > sideC) AND (sideA + sideC > sideB) AND (sideB + sideC > sideA) THEN
-    OUTPUT "Valid triangle"
-ELSE
-    OUTPUT "Not a valid triangle"
-END IF
-END`,
+    title: "ตรวจสอบความเป็นไปได้ของรูปสามเหลี่ยม",
+    description: "รับค่าความยาวด้านทั้งสามของรูปสามเหลี่ยม แล้วตรวจสอบว่าสามารถสร้างเป็นรูปสามเหลี่ยมได้จริงหรือไม่",
+    pseudocode: `เริ่มต้น
+รับค่า sideA, sideB, sideC
+ถ้า (sideA + sideB > sideC) และ (sideA + sideC > sideB) และ (sideB + sideC > sideA) แล้ว
+    แสดงผล "เป็นรูปสามเหลี่ยมที่ถูกต้อง"
+มิฉะนั้น
+    แสดงผล "ไม่ใช่รูปสามเหลี่ยมที่ถูกต้อง"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "BMI Category",
-    description: "Read a calculated BMI value and classify it as underweight, normal, overweight, or obese.",
-    pseudocode: `START
-INPUT bmi
-IF bmi < 18.5 THEN
-    OUTPUT "Underweight"
-ELSE IF bmi < 25 THEN
-    OUTPUT "Normal"
-ELSE IF bmi < 30 THEN
-    OUTPUT "Overweight"
-ELSE
-    OUTPUT "Obese"
-END IF
-END`,
+    title: "จำแนกกลุ่มค่าดัชนีมวลกาย",
+    description: "รับค่า BMI ที่คำนวณไว้แล้ว แล้วจำแนกเป็นกลุ่มน้ำหนักน้อย ปกติ น้ำหนักเกิน หรืออ้วน",
+    pseudocode: `เริ่มต้น
+รับค่า bmi
+ถ้า bmi < 18.5 แล้ว
+    แสดงผล "น้ำหนักน้อย"
+มิฉะนั้นถ้า bmi < 25 แล้ว
+    แสดงผล "ปกติ"
+มิฉะนั้นถ้า bmi < 30 แล้ว
+    แสดงผล "น้ำหนักเกิน"
+มิฉะนั้น
+    แสดงผล "อ้วน"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Divisible by 3 and 5",
-    description: "Read a number and determine whether it is divisible by both 3 and 5.",
-    pseudocode: `START
-INPUT number
-IF number MOD 3 = 0 AND number MOD 5 = 0 THEN
-    OUTPUT "Divisible by both 3 and 5"
-ELSE
-    OUTPUT "Not divisible by both"
-END IF
-END`,
+    title: "ตรวจสอบการหารลงตัวด้วย 3 และ 5",
+    description: "รับค่าตัวเลข แล้วตรวจสอบว่าหารด้วย 3 และ 5 ลงตัวทั้งคู่หรือไม่",
+    pseudocode: `เริ่มต้น
+รับค่า number
+ถ้า number mod 3 = 0 และ number mod 5 = 0 แล้ว
+    แสดงผล "หารด้วย 3 และ 5 ลงตัวทั้งคู่"
+มิฉะนั้น
+    แสดงผล "หารไม่ลงตัวทั้งคู่"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Shipping Cost by Weight",
-    description: "Read a package weight (kg) and determine the shipping cost: light (<=1kg), medium (<=5kg), or heavy (>5kg).",
-    pseudocode: `START
-INPUT weight
-IF weight <= 1 THEN
-    cost = 3
-ELSE IF weight <= 5 THEN
-    cost = 7
-ELSE
-    cost = 15
-END IF
-OUTPUT cost
-END`,
+    title: "หาค่าจัดส่งตามน้ำหนักพัสดุ",
+    description: "รับค่าน้ำหนักพัสดุ (กก.) แล้วตรวจสอบค่าจัดส่ง: เบา (ไม่เกิน 1 กก.), กลาง (ไม่เกิน 5 กก.), หนัก (เกิน 5 กก.)",
+    pseudocode: `เริ่มต้น
+รับค่า weight
+ถ้า weight <= 1 แล้ว
+    cost = 30
+มิฉะนั้นถ้า weight <= 5 แล้ว
+    cost = 70
+มิฉะนั้น
+    cost = 150
+จบเงื่อนไข
+แสดงผล cost
+จบ`,
   },
   {
-    title: "Discount by Purchase Amount",
-    description: "Read a total purchase amount and determine the discount percentage: 0% under $50, 10% under $200, else 20%.",
-    pseudocode: `START
-INPUT totalAmount
-IF totalAmount < 50 THEN
+    title: "หาส่วนลดตามยอดซื้อ",
+    description: "รับค่ายอดซื้อรวม แล้วตรวจสอบเปอร์เซ็นต์ส่วนลด: 0% ถ้าต่ำกว่า 500, 10% ถ้าต่ำกว่า 2000, มากกว่านั้น 20%",
+    pseudocode: `เริ่มต้น
+รับค่า totalAmount
+ถ้า totalAmount < 500 แล้ว
     discount = 0
-ELSE IF totalAmount < 200 THEN
+มิฉะนั้นถ้า totalAmount < 2000 แล้ว
     discount = 10
-ELSE
+มิฉะนั้น
     discount = 20
-END IF
-OUTPUT discount
-END`,
+จบเงื่อนไข
+แสดงผล discount
+จบ`,
   },
   {
-    title: "Vowel or Consonant",
-    description: "Read a single letter and determine whether it is a vowel or a consonant.",
-    pseudocode: `START
-INPUT letter
-IF letter = "A" OR letter = "E" OR letter = "I" OR letter = "O" OR letter = "U" THEN
-    OUTPUT "Vowel"
-ELSE
-    OUTPUT "Consonant"
-END IF
-END`,
+    title: "ตรวจสอบสระหรือพยัญชนะ",
+    description: "รับค่าตัวอักษรภาษาอังกฤษหนึ่งตัว แล้วตรวจสอบว่าเป็นสระหรือพยัญชนะ",
+    pseudocode: `เริ่มต้น
+รับค่า letter
+ถ้า letter = "A" หรือ letter = "E" หรือ letter = "I" หรือ letter = "O" หรือ letter = "U" แล้ว
+    แสดงผล "สระ"
+มิฉะนั้น
+    แสดงผล "พยัญชนะ"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Century Common Year Check",
-    description: "Read a year that is a multiple of 100, and determine if it is a leap year under the Gregorian rule.",
-    pseudocode: `START
-INPUT year
-IF year MOD 400 = 0 THEN
-    OUTPUT "Leap year"
-ELSE
-    OUTPUT "Common year"
-END IF
-END`,
+    title: "ตรวจสอบปีอธิกสุรทินของศตวรรษ",
+    description: "รับค่าปีที่หารด้วย 100 ลงตัว แล้วตรวจสอบว่าเป็นปีอธิกสุรทินตามกฎปฏิทินเกรกอเรียนหรือไม่",
+    pseudocode: `เริ่มต้น
+รับค่า year
+ถ้า year mod 400 = 0 แล้ว
+    แสดงผล "เป็นปีอธิกสุรทิน"
+มิฉะนั้น
+    แสดงผล "ปีปกติ"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Weekday or Weekend",
-    description: "Read a day number (1 = Monday ... 7 = Sunday) and determine if it is a weekday or weekend.",
-    pseudocode: `START
-INPUT dayNumber
-IF dayNumber = 6 OR dayNumber = 7 THEN
-    OUTPUT "Weekend"
-ELSE
-    OUTPUT "Weekday"
-END IF
-END`,
+    title: "ตรวจสอบวันธรรมดาหรือวันหยุดสุดสัปดาห์",
+    description: "รับค่าลำดับวัน (1 = จันทร์ ... 7 = อาทิตย์) แล้วตรวจสอบว่าเป็นวันธรรมดาหรือวันหยุดสุดสัปดาห์",
+    pseudocode: `เริ่มต้น
+รับค่า dayNumber
+ถ้า dayNumber = 6 หรือ dayNumber = 7 แล้ว
+    แสดงผล "วันหยุดสุดสัปดาห์"
+มิฉะนั้น
+    แสดงผล "วันธรรมดา"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Password Length Check",
-    description: "Read a password's length and determine whether it meets the minimum requirement of 8 characters.",
-    pseudocode: `START
-INPUT passwordLength
-IF passwordLength >= 8 THEN
-    OUTPUT "Password length OK"
-ELSE
-    OUTPUT "Password too short"
-END IF
-END`,
+    title: "ตรวจสอบความยาวรหัสผ่าน",
+    description: "รับค่าความยาวของรหัสผ่าน แล้วตรวจสอบว่ามีความยาวอย่างน้อย 8 ตัวอักษรหรือไม่",
+    pseudocode: `เริ่มต้น
+รับค่า passwordLength
+ถ้า passwordLength >= 8 แล้ว
+    แสดงผล "ความยาวรหัสผ่านผ่านเกณฑ์"
+มิฉะนั้น
+    แสดงผล "รหัสผ่านสั้นเกินไป"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Quadrant of a Point",
-    description: "Read the x and y coordinates of a point and determine which quadrant it lies in.",
-    pseudocode: `START
-INPUT x, y
-IF x > 0 AND y > 0 THEN
-    OUTPUT "Quadrant I"
-ELSE IF x < 0 AND y > 0 THEN
-    OUTPUT "Quadrant II"
-ELSE IF x < 0 AND y < 0 THEN
-    OUTPUT "Quadrant III"
-ELSE IF x > 0 AND y < 0 THEN
-    OUTPUT "Quadrant IV"
-ELSE
-    OUTPUT "On an axis"
-END IF
-END`,
+    title: "หาควอดแรนต์ของจุดบนกราฟ",
+    description: "รับค่าพิกัด x และ y ของจุดหนึ่งจุด แล้วตรวจสอบว่าอยู่ในควอดแรนต์ใด",
+    pseudocode: `เริ่มต้น
+รับค่า x, y
+ถ้า x > 0 และ y > 0 แล้ว
+    แสดงผล "ควอดแรนต์ที่ 1"
+มิฉะนั้นถ้า x < 0 และ y > 0 แล้ว
+    แสดงผล "ควอดแรนต์ที่ 2"
+มิฉะนั้นถ้า x < 0 และ y < 0 แล้ว
+    แสดงผล "ควอดแรนต์ที่ 3"
+มิฉะนั้นถ้า x > 0 และ y < 0 แล้ว
+    แสดงผล "ควอดแรนต์ที่ 4"
+มิฉะนั้น
+    แสดงผล "อยู่บนแกน"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Multiple Check",
-    description: "Read two numbers and determine whether the first is a multiple of the second.",
-    pseudocode: `START
-INPUT number, divisor
-IF number MOD divisor = 0 THEN
-    OUTPUT "Multiple"
-ELSE
-    OUTPUT "Not a multiple"
-END IF
-END`,
+    title: "ตรวจสอบว่าเป็นจำนวนเท่า",
+    description: "รับค่าตัวเลขสองจำนวน แล้วตรวจสอบว่าจำนวนแรกเป็นจำนวนเท่าของจำนวนที่สองหรือไม่",
+    pseudocode: `เริ่มต้น
+รับค่า number, divisor
+ถ้า number mod divisor = 0 แล้ว
+    แสดงผล "เป็นจำนวนเท่า"
+มิฉะนั้น
+    แสดงผล "ไม่เป็นจำนวนเท่า"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Pass or Fail",
-    description: "Read a score and determine pass or fail, where 50 or higher is a pass.",
-    pseudocode: `START
-INPUT score
-IF score >= 50 THEN
-    OUTPUT "Pass"
-ELSE
-    OUTPUT "Fail"
-END IF
-END`,
+    title: "ตรวจสอบผ่านหรือไม่ผ่าน",
+    description: "รับค่าคะแนน แล้วตรวจสอบว่าผ่านหรือไม่ผ่าน โดยคะแนน 50 ขึ้นไปถือว่าผ่าน",
+    pseudocode: `เริ่มต้น
+รับค่า score
+ถ้า score >= 50 แล้ว
+    แสดงผล "ผ่าน"
+มิฉะนั้น
+    แสดงผล "ไม่ผ่าน"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Income Tax Bracket",
-    description: "Read an annual income and determine the tax bracket: 0% under 10000, 10% under 40000, else 20%.",
-    pseudocode: `START
-INPUT income
-IF income < 10000 THEN
+    title: "หาขั้นภาษีเงินได้",
+    description: "รับค่ารายได้ต่อปี แล้วตรวจสอบขั้นภาษี: 0% ถ้าต่ำกว่า 150,000, 10% ถ้าต่ำกว่า 500,000, มากกว่านั้น 20%",
+    pseudocode: `เริ่มต้น
+รับค่า income
+ถ้า income < 150000 แล้ว
     bracket = "0%"
-ELSE IF income < 40000 THEN
+มิฉะนั้นถ้า income < 500000 แล้ว
     bracket = "10%"
-ELSE
+มิฉะนั้น
     bracket = "20%"
-END IF
-OUTPUT bracket
-END`,
+จบเงื่อนไข
+แสดงผล bracket
+จบ`,
   },
   {
-    title: "Right Triangle Check",
-    description: "Read three side lengths and determine whether they form a right triangle (Pythagorean theorem).",
-    pseudocode: `START
-INPUT a, b, c
-longest = MAX(a, b, c)
-IF longest * longest = (a*a + b*b + c*c - longest*longest) THEN
-    OUTPUT "Right triangle"
-ELSE
-    OUTPUT "Not a right triangle"
-END IF
-END`,
+    title: "ตรวจสอบสามเหลี่ยมมุมฉาก",
+    description: "รับค่าความยาวด้านทั้งสามของรูปสามเหลี่ยม แล้วตรวจสอบว่าเป็นสามเหลี่ยมมุมฉากหรือไม่ (ทฤษฎีบทพีทาโกรัส)",
+    pseudocode: `เริ่มต้น
+รับค่า a, b, c
+longest = ค่ามากที่สุดของ(a, b, c)
+ถ้า longest * longest = (a*a + b*b + c*c - longest*longest) แล้ว
+    แสดงผล "เป็นสามเหลี่ยมมุมฉาก"
+มิฉะนั้น
+    แสดงผล "ไม่ใช่สามเหลี่ยมมุมฉาก"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Winner Between Two Scores",
-    description: "Read two players' scores and determine the winner, or report a tie.",
-    pseudocode: `START
-INPUT scoreA, scoreB
-IF scoreA > scoreB THEN
-    OUTPUT "Player A wins"
-ELSE IF scoreB > scoreA THEN
-    OUTPUT "Player B wins"
-ELSE
-    OUTPUT "It's a tie"
-END IF
-END`,
+    title: "หาผู้ชนะจากคะแนนสองผู้เล่น",
+    description: "รับค่าคะแนนของผู้เล่นสองคน แล้วตรวจสอบว่าใครชนะ หรือเสมอกัน",
+    pseudocode: `เริ่มต้น
+รับค่า scoreA, scoreB
+ถ้า scoreA > scoreB แล้ว
+    แสดงผล "ผู้เล่น A ชนะ"
+มิฉะนั้นถ้า scoreB > scoreA แล้ว
+    แสดงผล "ผู้เล่น B ชนะ"
+มิฉะนั้น
+    แสดงผล "เสมอกัน"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Number Within Range",
-    description: "Read a number and a lower and upper bound, then determine whether the number falls within the range.",
-    pseudocode: `START
-INPUT number, lowerBound, upperBound
-IF number >= lowerBound AND number <= upperBound THEN
-    OUTPUT "Within range"
-ELSE
-    OUTPUT "Out of range"
-END IF
-END`,
+    title: "ตรวจสอบว่าตัวเลขอยู่ในช่วงที่กำหนด",
+    description: "รับค่าตัวเลขหนึ่งจำนวนพร้อมขอบเขตล่างและขอบเขตบน แล้วตรวจสอบว่าตัวเลขนั้นอยู่ในช่วงหรือไม่",
+    pseudocode: `เริ่มต้น
+รับค่า number, lowerBound, upperBound
+ถ้า number >= lowerBound และ number <= upperBound แล้ว
+    แสดงผล "อยู่ในช่วงที่กำหนด"
+มิฉะนั้น
+    แสดงผล "อยู่นอกช่วงที่กำหนด"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "PIN Login Check",
-    description: "Read an entered PIN and the correct PIN, then determine whether access is granted.",
-    pseudocode: `START
-INPUT enteredPin, correctPin
-IF enteredPin = correctPin THEN
-    OUTPUT "Access granted"
-ELSE
-    OUTPUT "Access denied"
-END IF
-END`,
+    title: "ตรวจสอบรหัส PIN สำหรับเข้าสู่ระบบ",
+    description: "รับค่ารหัส PIN ที่กรอกและรหัส PIN ที่ถูกต้อง แล้วตรวจสอบว่าอนุญาตให้เข้าสู่ระบบหรือไม่",
+    pseudocode: `เริ่มต้น
+รับค่า enteredPin, correctPin
+ถ้า enteredPin = correctPin แล้ว
+    แสดงผล "เข้าสู่ระบบสำเร็จ"
+มิฉะนั้น
+    แสดงผล "รหัสไม่ถูกต้อง"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Shipping Priority Surcharge",
-    description: "Read a shipping priority level (1 = standard, 2 = express, 3 = overnight) and determine the surcharge.",
-    pseudocode: `START
-INPUT priorityLevel
-IF priorityLevel = 1 THEN
+    title: "หาค่าธรรมเนียมจัดส่งด่วน",
+    description: "รับค่าระดับความเร่งด่วนในการจัดส่ง (1 = ปกติ, 2 = ด่วน, 3 = ด่วนพิเศษ) แล้วตรวจสอบค่าธรรมเนียมเพิ่มเติม",
+    pseudocode: `เริ่มต้น
+รับค่า priorityLevel
+ถ้า priorityLevel = 1 แล้ว
     surcharge = 0
-ELSE IF priorityLevel = 2 THEN
-    surcharge = 10
-ELSE
-    surcharge = 25
-END IF
-OUTPUT surcharge
-END`,
+มิฉะนั้นถ้า priorityLevel = 2 แล้ว
+    surcharge = 50
+มิฉะนั้น
+    surcharge = 120
+จบเงื่อนไข
+แสดงผล surcharge
+จบ`,
   },
   {
-    title: "Season From Month Number",
-    description: "Read a month number (1-12) and determine the season (Winter, Spring, Summer, Fall).",
-    pseudocode: `START
-INPUT month
-IF month = 12 OR month = 1 OR month = 2 THEN
-    OUTPUT "Winter"
-ELSE IF month >= 3 AND month <= 5 THEN
-    OUTPUT "Spring"
-ELSE IF month >= 6 AND month <= 8 THEN
-    OUTPUT "Summer"
-ELSE
-    OUTPUT "Fall"
-END IF
-END`,
+    title: "หาฤดูกาลจากหมายเลขเดือน",
+    description: "รับค่าหมายเลขเดือน (1-12) แล้วตรวจสอบฤดูกาล (หนาว ร้อน ฝน)",
+    pseudocode: `เริ่มต้น
+รับค่า month
+ถ้า month = 3 หรือ month = 4 แล้ว
+    แสดงผล "ฤดูร้อน"
+มิฉะนั้นถ้า month >= 5 และ month <= 10 แล้ว
+    แสดงผล "ฤดูฝน"
+มิฉะนั้น
+    แสดงผล "ฤดูหนาว"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Loan Eligibility",
-    description: "Read an applicant's age and income, then determine loan eligibility (must be 21+ and earn at least 20000).",
-    pseudocode: `START
-INPUT age, income
-IF age >= 21 AND income >= 20000 THEN
-    OUTPUT "Eligible for loan"
-ELSE
-    OUTPUT "Not eligible for loan"
-END IF
-END`,
+    title: "ตรวจสอบคุณสมบัติผู้กู้",
+    description: "รับค่าอายุและรายได้ของผู้สมัคร แล้วตรวจสอบคุณสมบัติการกู้เงิน (ต้องอายุ 21 ปีขึ้นไป และรายได้อย่างน้อย 15,000)",
+    pseudocode: `เริ่มต้น
+รับค่า age, income
+ถ้า age >= 21 และ income >= 15000 แล้ว
+    แสดงผล "มีคุณสมบัติกู้เงินได้"
+มิฉะนั้น
+    แสดงผล "ไม่มีคุณสมบัติกู้เงิน"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Sign of a Product",
-    description: "Read two numbers and determine the sign of their product (positive, negative, or zero) without multiplying them.",
-    pseudocode: `START
-INPUT a, b
-IF a = 0 OR b = 0 THEN
-    OUTPUT "Zero"
-ELSE IF (a > 0 AND b > 0) OR (a < 0 AND b < 0) THEN
-    OUTPUT "Positive"
-ELSE
-    OUTPUT "Negative"
-END IF
-END`,
+    title: "หาเครื่องหมายของผลคูณ",
+    description: "รับค่าตัวเลขสองจำนวน แล้วตรวจสอบเครื่องหมายของผลคูณ (บวก ลบ หรือศูนย์) โดยไม่ต้องคูณจริง",
+    pseudocode: `เริ่มต้น
+รับค่า a, b
+ถ้า a = 0 หรือ b = 0 แล้ว
+    แสดงผล "ศูนย์"
+มิฉะนั้นถ้า (a > 0 และ b > 0) หรือ (a < 0 และ b < 0) แล้ว
+    แสดงผล "บวก"
+มิฉะนั้น
+    แสดงผล "ลบ"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Body Temperature Status",
-    description: "Read a body temperature in Celsius and classify it as hypothermia, normal, or fever.",
-    pseudocode: `START
-INPUT temperature
-IF temperature < 35 THEN
-    OUTPUT "Hypothermia"
-ELSE IF temperature <= 37.5 THEN
-    OUTPUT "Normal"
-ELSE
-    OUTPUT "Fever"
-END IF
-END`,
+    title: "ตรวจสอบสถานะอุณหภูมิร่างกาย",
+    description: "รับค่าอุณหภูมิร่างกายเป็นองศาเซลเซียส แล้วจำแนกเป็นภาวะอุณหภูมิต่ำ ปกติ หรือมีไข้",
+    pseudocode: `เริ่มต้น
+รับค่า temperature
+ถ้า temperature < 35 แล้ว
+    แสดงผล "อุณหภูมิร่างกายต่ำ"
+มิฉะนั้นถ้า temperature <= 37.5 แล้ว
+    แสดงผล "ปกติ"
+มิฉะนั้น
+    แสดงผล "มีไข้"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Maximum of Two With Category",
-    description: "Read two numbers, determine the maximum, and label it as small (<10), medium (<100), or large.",
-    pseudocode: `START
-INPUT a, b
-IF a > b THEN
+    title: "หาค่ามากสุดของเลขสองจำนวนพร้อมจัดกลุ่ม",
+    description: "รับค่าตัวเลขสองจำนวน หาค่ามากที่สุด แล้วจัดกลุ่มเป็นค่าน้อย (<10) ค่าปานกลาง (<100) หรือค่ามาก",
+    pseudocode: `เริ่มต้น
+รับค่า a, b
+ถ้า a > b แล้ว
     maximum = a
-ELSE
+มิฉะนั้น
     maximum = b
-END IF
-IF maximum < 10 THEN
-    OUTPUT maximum, "Small"
-ELSE IF maximum < 100 THEN
-    OUTPUT maximum, "Medium"
-ELSE
-    OUTPUT maximum, "Large"
-END IF
-END`,
+จบเงื่อนไข
+ถ้า maximum < 10 แล้ว
+    แสดงผล maximum, "ค่าน้อย"
+มิฉะนั้นถ้า maximum < 100 แล้ว
+    แสดงผล maximum, "ค่าปานกลาง"
+มิฉะนั้น
+    แสดงผล maximum, "ค่ามาก"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Taxi Fare by Distance",
-    description: "Read a trip distance in km and calculate the base fare: 3.5 flat under 2km, plus 1.2/km beyond that.",
-    pseudocode: `START
-INPUT distance
-IF distance <= 2 THEN
-    fare = 3.5
-ELSE
-    fare = 3.5 + (distance - 2) * 1.2
-END IF
-OUTPUT fare
-END`,
+    title: "หาค่าโดยสารแท็กซี่ตามระยะทาง",
+    description: "รับค่าระยะทางที่เดินทาง (กม.) แล้วคำนวณค่าโดยสาร: เหมาจ่าย 35 บาทถ้าไม่เกิน 2 กม. บวกเพิ่ม 12 บาท/กม. สำหรับส่วนที่เกิน",
+    pseudocode: `เริ่มต้น
+รับค่า distance
+ถ้า distance <= 2 แล้ว
+    fare = 35
+มิฉะนั้น
+    fare = 35 + (distance - 2) * 12
+จบเงื่อนไข
+แสดงผล fare
+จบ`,
   },
   {
-    title: "Honor Roll Status",
-    description: "Read a student's GPA and attendance percentage, then determine honor roll status (GPA >= 3.5 and attendance >= 90%).",
-    pseudocode: `START
-INPUT gpa, attendance
-IF gpa >= 3.5 AND attendance >= 90 THEN
-    OUTPUT "Honor roll"
-ELSE
-    OUTPUT "Not honor roll"
-END IF
-END`,
+    title: "ตรวจสอบสถานะเรียนดี",
+    description: "รับค่าเกรดเฉลี่ยและเปอร์เซ็นต์การเข้าเรียนของนักเรียน แล้วตรวจสอบสถานะเรียนดี (เกรดเฉลี่ย >= 3.5 และเข้าเรียน >= 90%)",
+    pseudocode: `เริ่มต้น
+รับค่า gpa, attendance
+ถ้า gpa >= 3.5 และ attendance >= 90 แล้ว
+    แสดงผล "ได้รับสถานะเรียนดี"
+มิฉะนั้น
+    แสดงผล "ยังไม่ได้สถานะเรียนดี"
+จบเงื่อนไข
+จบ`,
   },
 ];
 
 // ---------------------------------------------------------------------------
-// LOOP - repetition with WHILE / FOR (33 problems)
+// ทำซ้ำ (Loop) - ตรรกะแบบทำซ้ำด้วย ทำซ้ำ/ทำซ้ำขณะที่ (33 ข้อ)
 // ---------------------------------------------------------------------------
 export const loopProblems: SeedProblem[] = [
   {
-    title: "Sum From 1 to N",
-    description: "Read a number N and calculate the sum of all whole numbers from 1 to N.",
-    pseudocode: `START
-INPUT n
+    title: "หาผลรวมตั้งแต่ 1 ถึง N",
+    description: "รับค่า N แล้วคำนวณผลรวมของจำนวนเต็มตั้งแต่ 1 ถึง N",
+    pseudocode: `เริ่มต้น
+รับค่า n
 sum = 0
-FOR i = 1 TO n
+ทำซ้ำ i = 1 ถึง n
     sum = sum + i
-END FOR
-OUTPUT sum
-END`,
+จบการทำซ้ำ
+แสดงผล sum
+จบ`,
   },
   {
-    title: "Factorial of N",
-    description: "Read a number N and calculate its factorial (N!).",
-    pseudocode: `START
-INPUT n
+    title: "หาค่าแฟกทอเรียลของ N",
+    description: "รับค่า N แล้วคำนวณค่าแฟกทอเรียล (N!)",
+    pseudocode: `เริ่มต้น
+รับค่า n
 factorial = 1
-FOR i = 1 TO n
+ทำซ้ำ i = 1 ถึง n
     factorial = factorial * i
-END FOR
-OUTPUT factorial
-END`,
+จบการทำซ้ำ
+แสดงผล factorial
+จบ`,
   },
   {
-    title: "Multiplication Table",
-    description: "Read a number and print its multiplication table from 1 to 10.",
-    pseudocode: `START
-INPUT number
-FOR i = 1 TO 10
+    title: "แสดงสูตรคูณแม่ที่กำหนด",
+    description: "รับค่าตัวเลข แล้วแสดงสูตรคูณของตัวเลขนั้นตั้งแต่ 1 ถึง 12",
+    pseudocode: `เริ่มต้น
+รับค่า number
+ทำซ้ำ i = 1 ถึง 12
     result = number * i
-    OUTPUT number, "x", i, "=", result
-END FOR
-END`,
+    แสดงผล number, "x", i, "=", result
+จบการทำซ้ำ
+จบ`,
   },
   {
-    title: "Count Digits of a Number",
-    description: "Read a number and count how many digits it has.",
-    pseudocode: `START
-INPUT number
+    title: "นับจำนวนหลักของตัวเลข",
+    description: "รับค่าตัวเลข แล้วนับว่ามีทั้งหมดกี่หลัก",
+    pseudocode: `เริ่มต้น
+รับค่า number
 count = 0
-WHILE number > 0
-    number = number / 10 (integer division)
+ทำซ้ำขณะที่ number > 0
+    number = number / 10 (หารเอาจำนวนเต็ม)
     count = count + 1
-END WHILE
-OUTPUT count
-END`,
+จบการทำซ้ำ
+แสดงผล count
+จบ`,
   },
   {
-    title: "Reverse a Number",
-    description: "Read a number and display it with its digits reversed.",
-    pseudocode: `START
-INPUT number
+    title: "กลับหลักตัวเลข",
+    description: "รับค่าตัวเลข แล้วแสดงผลเมื่อสลับลำดับหลักกลับด้าน",
+    pseudocode: `เริ่มต้น
+รับค่า number
 reversed = 0
-WHILE number > 0
-    digit = number MOD 10
+ทำซ้ำขณะที่ number > 0
+    digit = number mod 10
     reversed = (reversed * 10) + digit
-    number = number / 10 (integer division)
-END WHILE
-OUTPUT reversed
-END`,
+    number = number / 10 (หารเอาจำนวนเต็ม)
+จบการทำซ้ำ
+แสดงผล reversed
+จบ`,
   },
   {
-    title: "Sum of Digits",
-    description: "Read a number and calculate the sum of its digits.",
-    pseudocode: `START
-INPUT number
+    title: "หาผลรวมของหลักตัวเลข",
+    description: "รับค่าตัวเลข แล้วคำนวณผลรวมของตัวเลขในแต่ละหลัก",
+    pseudocode: `เริ่มต้น
+รับค่า number
 sum = 0
-WHILE number > 0
-    digit = number MOD 10
+ทำซ้ำขณะที่ number > 0
+    digit = number mod 10
     sum = sum + digit
-    number = number / 10 (integer division)
-END WHILE
-OUTPUT sum
-END`,
+    number = number / 10 (หารเอาจำนวนเต็ม)
+จบการทำซ้ำ
+แสดงผล sum
+จบ`,
   },
   {
-    title: "Prime Number Check",
-    description: "Read a number and determine whether it is prime using a loop that tests possible divisors.",
-    pseudocode: `START
-INPUT number
-isPrime = TRUE
-IF number < 2 THEN
-    isPrime = FALSE
-END IF
-FOR i = 2 TO number - 1
-    IF number MOD i = 0 THEN
-        isPrime = FALSE
-    END IF
-END FOR
-IF isPrime = TRUE THEN
-    OUTPUT "Prime"
-ELSE
-    OUTPUT "Not prime"
-END IF
-END`,
+    title: "ตรวจสอบจำนวนเฉพาะ",
+    description: "รับค่าตัวเลข แล้วตรวจสอบว่าเป็นจำนวนเฉพาะหรือไม่ โดยใช้การทำซ้ำตรวจสอบตัวหารที่เป็นไปได้",
+    pseudocode: `เริ่มต้น
+รับค่า number
+isPrime = จริง
+ถ้า number < 2 แล้ว
+    isPrime = เท็จ
+จบเงื่อนไข
+ทำซ้ำ i = 2 ถึง number - 1
+    ถ้า number mod i = 0 แล้ว
+        isPrime = เท็จ
+    จบเงื่อนไข
+จบการทำซ้ำ
+ถ้า isPrime = จริง แล้ว
+    แสดงผล "เป็นจำนวนเฉพาะ"
+มิฉะนั้น
+    แสดงผล "ไม่ใช่จำนวนเฉพาะ"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "First N Fibonacci Numbers",
-    description: "Read a number N and print the first N terms of the Fibonacci sequence.",
-    pseudocode: `START
-INPUT n
+    title: "แสดงลำดับฟีโบนัชชี N พจน์แรก",
+    description: "รับค่า N แล้วแสดงลำดับฟีโบนัชชี N พจน์แรก",
+    pseudocode: `เริ่มต้น
+รับค่า n
 first = 0
 second = 1
-FOR i = 1 TO n
-    OUTPUT first
+ทำซ้ำ i = 1 ถึง n
+    แสดงผล first
     next = first + second
     first = second
     second = next
-END FOR
-END`,
+จบการทำซ้ำ
+จบ`,
   },
   {
-    title: "Sum of Even Numbers to N",
-    description: "Read a number N and calculate the sum of all even numbers from 1 to N.",
-    pseudocode: `START
-INPUT n
+    title: "หาผลรวมเลขคู่ตั้งแต่ 1 ถึง N",
+    description: "รับค่า N แล้วคำนวณผลรวมของเลขคู่ทั้งหมดตั้งแต่ 1 ถึง N",
+    pseudocode: `เริ่มต้น
+รับค่า n
 sum = 0
-FOR i = 1 TO n
-    IF i MOD 2 = 0 THEN
+ทำซ้ำ i = 1 ถึง n
+    ถ้า i mod 2 = 0 แล้ว
         sum = sum + i
-    END IF
-END FOR
-OUTPUT sum
-END`,
+    จบเงื่อนไข
+จบการทำซ้ำ
+แสดงผล sum
+จบ`,
   },
   {
-    title: "Sum of Odd Numbers to N",
-    description: "Read a number N and calculate the sum of all odd numbers from 1 to N.",
-    pseudocode: `START
-INPUT n
+    title: "หาผลรวมเลขคี่ตั้งแต่ 1 ถึง N",
+    description: "รับค่า N แล้วคำนวณผลรวมของเลขคี่ทั้งหมดตั้งแต่ 1 ถึง N",
+    pseudocode: `เริ่มต้น
+รับค่า n
 sum = 0
-FOR i = 1 TO n
-    IF i MOD 2 != 0 THEN
+ทำซ้ำ i = 1 ถึง n
+    ถ้า i mod 2 != 0 แล้ว
         sum = sum + i
-    END IF
-END FOR
-OUTPUT sum
-END`,
+    จบเงื่อนไข
+จบการทำซ้ำ
+แสดงผล sum
+จบ`,
   },
   {
-    title: "Count Multiples of 3",
-    description: "Read a number N and count how many numbers between 1 and N are divisible by 3.",
-    pseudocode: `START
-INPUT n
+    title: "นับจำนวนที่หารด้วย 3 ลงตัว",
+    description: "รับค่า N แล้วนับว่ามีตัวเลขกี่จำนวนระหว่าง 1 ถึง N ที่หารด้วย 3 ลงตัว",
+    pseudocode: `เริ่มต้น
+รับค่า n
 count = 0
-FOR i = 1 TO n
-    IF i MOD 3 = 0 THEN
+ทำซ้ำ i = 1 ถึง n
+    ถ้า i mod 3 = 0 แล้ว
         count = count + 1
-    END IF
-END FOR
-OUTPUT count
-END`,
+    จบเงื่อนไข
+จบการทำซ้ำ
+แสดงผล count
+จบ`,
   },
   {
-    title: "Largest of N Numbers",
-    description: "Read how many numbers will be entered, then read that many numbers and find the largest.",
-    pseudocode: `START
-INPUT count
-largest = -INFINITY
-FOR i = 1 TO count
-    INPUT number
-    IF number > largest THEN
+    title: "หาค่ามากที่สุดจากตัวเลข N จำนวน",
+    description: "รับค่าจำนวนตัวเลขที่จะป้อน แล้วรับค่าตัวเลขทีละจำนวนเพื่อหาค่าที่มากที่สุด",
+    pseudocode: `เริ่มต้น
+รับค่า count
+largest = ค่าน้อยที่สุดเท่าที่เป็นไปได้
+ทำซ้ำ i = 1 ถึง count
+    รับค่า number
+    ถ้า number > largest แล้ว
         largest = number
-    END IF
-END FOR
-OUTPUT largest
-END`,
+    จบเงื่อนไข
+จบการทำซ้ำ
+แสดงผล largest
+จบ`,
   },
   {
-    title: "Smallest of N Numbers",
-    description: "Read how many numbers will be entered, then read that many numbers and find the smallest.",
-    pseudocode: `START
-INPUT count
-smallest = +INFINITY
-FOR i = 1 TO count
-    INPUT number
-    IF number < smallest THEN
+    title: "หาค่าน้อยที่สุดจากตัวเลข N จำนวน",
+    description: "รับค่าจำนวนตัวเลขที่จะป้อน แล้วรับค่าตัวเลขทีละจำนวนเพื่อหาค่าที่น้อยที่สุด",
+    pseudocode: `เริ่มต้น
+รับค่า count
+smallest = ค่ามากที่สุดเท่าที่เป็นไปได้
+ทำซ้ำ i = 1 ถึง count
+    รับค่า number
+    ถ้า number < smallest แล้ว
         smallest = number
-    END IF
-END FOR
-OUTPUT smallest
-END`,
+    จบเงื่อนไข
+จบการทำซ้ำ
+แสดงผล smallest
+จบ`,
   },
   {
-    title: "Average of N Numbers",
-    description: "Read how many numbers will be entered, then read that many numbers and calculate their average.",
-    pseudocode: `START
-INPUT count
+    title: "หาค่าเฉลี่ยจากตัวเลข N จำนวน",
+    description: "รับค่าจำนวนตัวเลขที่จะป้อน แล้วรับค่าตัวเลขทีละจำนวนเพื่อคำนวณค่าเฉลี่ย",
+    pseudocode: `เริ่มต้น
+รับค่า count
 sum = 0
-FOR i = 1 TO count
-    INPUT number
+ทำซ้ำ i = 1 ถึง count
+    รับค่า number
     sum = sum + number
-END FOR
+จบการทำซ้ำ
 average = sum / count
-OUTPUT average
-END`,
+แสดงผล average
+จบ`,
   },
   {
-    title: "Countdown From N",
-    description: "Read a number N and print a countdown from N down to 1.",
-    pseudocode: `START
-INPUT n
-WHILE n >= 1
-    OUTPUT n
+    title: "นับถอยหลังจาก N",
+    description: "รับค่า N แล้วแสดงผลการนับถอยหลังจาก N ถึง 1",
+    pseudocode: `เริ่มต้น
+รับค่า n
+ทำซ้ำขณะที่ n >= 1
+    แสดงผล n
     n = n - 1
-END WHILE
-END`,
+จบการทำซ้ำ
+จบ`,
   },
   {
-    title: "Power Using Repeated Multiplication",
-    description: "Read a base and an exponent, then calculate the result using repeated multiplication (no power operator).",
-    pseudocode: `START
-INPUT base, exponent
+    title: "หาค่ายกกำลังด้วยการคูณซ้ำ",
+    description: "รับค่าฐานและเลขยกกำลัง แล้วคำนวณผลลัพธ์ด้วยการคูณซ้ำ (ไม่ใช้เครื่องหมายยกกำลัง)",
+    pseudocode: `เริ่มต้น
+รับค่า base, exponent
 result = 1
-FOR i = 1 TO exponent
+ทำซ้ำ i = 1 ถึง exponent
     result = result * base
-END FOR
-OUTPUT result
-END`,
+จบการทำซ้ำ
+แสดงผล result
+จบ`,
   },
   {
-    title: "GCD by Repeated Subtraction",
-    description: "Read two numbers and calculate their greatest common divisor using repeated subtraction.",
-    pseudocode: `START
-INPUT a, b
-WHILE a != b
-    IF a > b THEN
+    title: "หา ห.ร.ม. ด้วยการลบซ้ำ",
+    description: "รับค่าตัวเลขสองจำนวน แล้วหาตัวหารร่วมมาก (ห.ร.ม.) ด้วยวิธีการลบซ้ำ",
+    pseudocode: `เริ่มต้น
+รับค่า a, b
+ทำซ้ำขณะที่ a != b
+    ถ้า a > b แล้ว
         a = a - b
-    ELSE
+    มิฉะนั้น
         b = b - a
-    END IF
-END WHILE
-OUTPUT a
-END`,
+    จบเงื่อนไข
+จบการทำซ้ำ
+แสดงผล a
+จบ`,
   },
   {
-    title: "Palindrome Word Check",
-    description: "Read a word and determine whether it reads the same forwards and backwards by comparing characters from both ends.",
-    pseudocode: `START
-INPUT word
+    title: "ตรวจสอบคำพาลินโดรม",
+    description: "รับค่าคำ แล้วตรวจสอบว่าอ่านจากหน้าไปหลังกับหลังไปหน้าเหมือนกันหรือไม่ ด้วยการเปรียบเทียบตัวอักษรจากปลายทั้งสองข้าง",
+    pseudocode: `เริ่มต้น
+รับค่า word
 left = 0
-right = LENGTH(word) - 1
-isPalindrome = TRUE
-WHILE left < right
-    IF word[left] != word[right] THEN
-        isPalindrome = FALSE
-    END IF
+right = ความยาว(word) - 1
+isPalindrome = จริง
+ทำซ้ำขณะที่ left < right
+    ถ้า word[left] != word[right] แล้ว
+        isPalindrome = เท็จ
+    จบเงื่อนไข
     left = left + 1
     right = right - 1
-END WHILE
-OUTPUT isPalindrome
-END`,
+จบการทำซ้ำ
+แสดงผล isPalindrome
+จบ`,
   },
   {
-    title: "Count Vowels in a Word",
-    description: "Read a word and count how many vowels it contains.",
-    pseudocode: `START
-INPUT word
+    title: "นับจำนวนสระในคำ",
+    description: "รับค่าคำ แล้วนับว่ามีสระอยู่กี่ตัว",
+    pseudocode: `เริ่มต้น
+รับค่า word
 count = 0
-FOR i = 0 TO LENGTH(word) - 1
+ทำซ้ำ i = 0 ถึง ความยาว(word) - 1
     letter = word[i]
-    IF letter = "A" OR letter = "E" OR letter = "I" OR letter = "O" OR letter = "U" THEN
+    ถ้า letter = "A" หรือ letter = "E" หรือ letter = "I" หรือ letter = "O" หรือ letter = "U" แล้ว
         count = count + 1
-    END IF
-END FOR
-OUTPUT count
-END`,
+    จบเงื่อนไข
+จบการทำซ้ำ
+แสดงผล count
+จบ`,
   },
   {
-    title: "Sum of a Harmonic Series",
-    description: "Read a number N and calculate the sum of the series 1 + 1/2 + 1/3 + ... + 1/N.",
-    pseudocode: `START
-INPUT n
+    title: "หาผลรวมของอนุกรมฮาร์มอนิก",
+    description: "รับค่า N แล้วคำนวณผลรวมของอนุกรม 1 + 1/2 + 1/3 + ... + 1/N",
+    pseudocode: `เริ่มต้น
+รับค่า n
 sum = 0
-FOR i = 1 TO n
+ทำซ้ำ i = 1 ถึง n
     sum = sum + (1 / i)
-END FOR
-OUTPUT sum
-END`,
+จบการทำซ้ำ
+แสดงผล sum
+จบ`,
   },
   {
-    title: "Print All Divisors",
-    description: "Read a number and print every positive divisor of it.",
-    pseudocode: `START
-INPUT number
-FOR i = 1 TO number
-    IF number MOD i = 0 THEN
-        OUTPUT i
-    END IF
-END FOR
-END`,
+    title: "แสดงตัวหารทั้งหมดของตัวเลข",
+    description: "รับค่าตัวเลข แล้วแสดงตัวหารที่เป็นบวกทั้งหมดของตัวเลขนั้น",
+    pseudocode: `เริ่มต้น
+รับค่า number
+ทำซ้ำ i = 1 ถึง number
+    ถ้า number mod i = 0 แล้ว
+        แสดงผล i
+    จบเงื่อนไข
+จบการทำซ้ำ
+จบ`,
   },
   {
-    title: "Total Sales From N Entries",
-    description: "Read how many days of sales data will be entered, then read each day's sales and calculate the total.",
-    pseudocode: `START
-INPUT dayCount
+    title: "หายอดขายรวมจาก N รายการ",
+    description: "รับค่าจำนวนวันที่มีข้อมูลยอดขาย แล้วรับยอดขายแต่ละวันเพื่อคำนวณยอดรวม",
+    pseudocode: `เริ่มต้น
+รับค่า dayCount
 total = 0
-FOR i = 1 TO dayCount
-    INPUT dailySales
+ทำซ้ำ i = 1 ถึง dayCount
+    รับค่า dailySales
     total = total + dailySales
-END FOR
-OUTPUT total
-END`,
+จบการทำซ้ำ
+แสดงผล total
+จบ`,
   },
   {
-    title: "ATM PIN Retry Loop",
-    description: "Simulate an ATM that allows up to 3 attempts to enter the correct PIN before locking the account.",
-    pseudocode: `START
-INPUT correctPin
+    title: "จำลองการใส่รหัส PIN ตู้ ATM",
+    description: "จำลองตู้ ATM ที่อนุญาตให้กรอกรหัส PIN ผิดได้ไม่เกิน 3 ครั้ง ก่อนที่บัญชีจะถูกล็อก",
+    pseudocode: `เริ่มต้น
+รับค่า correctPin
 attempts = 0
-success = FALSE
-WHILE attempts < 3 AND success = FALSE
-    INPUT enteredPin
+success = เท็จ
+ทำซ้ำขณะที่ attempts < 3 และ success = เท็จ
+    รับค่า enteredPin
     attempts = attempts + 1
-    IF enteredPin = correctPin THEN
-        success = TRUE
-    END IF
-END WHILE
-IF success = TRUE THEN
-    OUTPUT "Access granted"
-ELSE
-    OUTPUT "Account locked"
-END IF
-END`,
+    ถ้า enteredPin = correctPin แล้ว
+        success = จริง
+    จบเงื่อนไข
+จบการทำซ้ำ
+ถ้า success = จริง แล้ว
+    แสดงผล "เข้าสู่ระบบสำเร็จ"
+มิฉะนั้น
+    แสดงผล "บัญชีถูกล็อก"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "Right Triangle Star Pattern",
-    description: "Read a number of rows N and print a right triangle pattern of stars, with row i containing i stars.",
-    pseudocode: `START
-INPUT n
-FOR i = 1 TO n
+    title: "แสดงลวดลายสามเหลี่ยมมุมฉากด้วยดาว",
+    description: "รับค่าจำนวนแถว N แล้วแสดงลวดลายสามเหลี่ยมมุมฉากด้วยเครื่องหมายดาว โดยแถวที่ i มีดาว i ตัว",
+    pseudocode: `เริ่มต้น
+รับค่า n
+ทำซ้ำ i = 1 ถึง n
     line = ""
-    FOR j = 1 TO i
+    ทำซ้ำ j = 1 ถึง i
         line = line + "*"
-    END FOR
-    OUTPUT line
-END FOR
-END`,
+    จบการทำซ้ำ
+    แสดงผล line
+จบการทำซ้ำ
+จบ`,
   },
   {
-    title: "Compound Interest Over N Years",
-    description: "Read a principal, an annual interest rate, and a number of years, then calculate the final amount year by year using a loop.",
-    pseudocode: `START
-INPUT principal, rate, years
+    title: "คำนวณดอกเบี้ยทบต้นหลายปีด้วยการทำซ้ำ",
+    description: "รับค่าเงินต้น อัตราดอกเบี้ยต่อปี และจำนวนปี แล้วคำนวณยอดเงินสุดท้ายทีละปีด้วยการทำซ้ำ",
+    pseudocode: `เริ่มต้น
+รับค่า principal, rate, years
 amount = principal
-FOR i = 1 TO years
+ทำซ้ำ i = 1 ถึง years
     amount = amount + (amount * rate / 100)
-END FOR
-OUTPUT amount
-END`,
+จบการทำซ้ำ
+แสดงผล amount
+จบ`,
   },
   {
-    title: "Count Occurrences in a List",
-    description: "Read how many numbers will be entered and a target value, then count how many times the target appears.",
-    pseudocode: `START
-INPUT count, target
+    title: "นับจำนวนครั้งที่พบค่าที่กำหนดในรายการ",
+    description: "รับค่าจำนวนตัวเลขที่จะป้อนและค่าที่ต้องการค้นหา แล้วนับว่าพบค่านั้นกี่ครั้ง",
+    pseudocode: `เริ่มต้น
+รับค่า count, target
 matches = 0
-FOR i = 1 TO count
-    INPUT number
-    IF number = target THEN
+ทำซ้ำ i = 1 ถึง count
+    รับค่า number
+    ถ้า number = target แล้ว
         matches = matches + 1
-    END IF
-END FOR
-OUTPUT matches
-END`,
+    จบเงื่อนไข
+จบการทำซ้ำ
+แสดงผล matches
+จบ`,
   },
   {
-    title: "Shopping Cart Running Total",
-    description: "Repeatedly read item prices and add them to a running total, stopping when the user enters 0.",
-    pseudocode: `START
+    title: "รวมยอดตะกร้าสินค้าแบบต่อเนื่อง",
+    description: "รับค่าราคาสินค้าทีละรายการแล้วรวมยอดต่อเนื่อง จนกว่าผู้ใช้จะป้อนค่า 0",
+    pseudocode: `เริ่มต้น
 total = 0
-INPUT price
-WHILE price != 0
+รับค่า price
+ทำซ้ำขณะที่ price != 0
     total = total + price
-    INPUT price
-END WHILE
-OUTPUT total
-END`,
+    รับค่า price
+จบการทำซ้ำ
+แสดงผล total
+จบ`,
   },
   {
-    title: "Collatz Sequence Steps",
-    description: "Read a number N and count how many steps it takes to reduce it to 1 using the Collatz rule (halve if even, triple plus one if odd).",
-    pseudocode: `START
-INPUT n
+    title: "นับจำนวนขั้นตอนของลำดับ Collatz",
+    description: "รับค่า N แล้วนับจำนวนขั้นตอนที่ใช้ลดค่าลงเหลือ 1 ตามกฎ Collatz (ถ้าเป็นเลขคู่ให้หารสอง ถ้าเป็นเลขคี่ให้คูณสามบวกหนึ่ง)",
+    pseudocode: `เริ่มต้น
+รับค่า n
 steps = 0
-WHILE n != 1
-    IF n MOD 2 = 0 THEN
+ทำซ้ำขณะที่ n != 1
+    ถ้า n mod 2 = 0 แล้ว
         n = n / 2
-    ELSE
+    มิฉะนั้น
         n = (n * 3) + 1
-    END IF
+    จบเงื่อนไข
     steps = steps + 1
-END WHILE
-OUTPUT steps
-END`,
+จบการทำซ้ำ
+แสดงผล steps
+จบ`,
   },
   {
-    title: "Perfect Number Check",
-    description: "Read a number and determine whether it is a perfect number (equal to the sum of its proper divisors).",
-    pseudocode: `START
-INPUT number
+    title: "ตรวจสอบจำนวนสมบูรณ์",
+    description: "รับค่าตัวเลข แล้วตรวจสอบว่าเป็นจำนวนสมบูรณ์หรือไม่ (ค่าเท่ากับผลรวมของตัวหารแท้ทั้งหมด)",
+    pseudocode: `เริ่มต้น
+รับค่า number
 sumOfDivisors = 0
-FOR i = 1 TO number - 1
-    IF number MOD i = 0 THEN
+ทำซ้ำ i = 1 ถึง number - 1
+    ถ้า number mod i = 0 แล้ว
         sumOfDivisors = sumOfDivisors + i
-    END IF
-END FOR
-IF sumOfDivisors = number THEN
-    OUTPUT "Perfect number"
-ELSE
-    OUTPUT "Not a perfect number"
-END IF
-END`,
+    จบเงื่อนไข
+จบการทำซ้ำ
+ถ้า sumOfDivisors = number แล้ว
+    แสดงผล "เป็นจำนวนสมบูรณ์"
+มิฉะนั้น
+    แสดงผล "ไม่ใช่จำนวนสมบูรณ์"
+จบเงื่อนไข
+จบ`,
   },
   {
-    title: "LCM Using a Loop",
-    description: "Read two numbers and calculate their least common multiple by checking multiples of the larger number.",
-    pseudocode: `START
-INPUT a, b
-larger = MAX(a, b)
+    title: "หา ค.ร.น. ด้วยการทำซ้ำ",
+    description: "รับค่าตัวเลขสองจำนวน แล้วหาตัวคูณร่วมน้อย (ค.ร.น.) ด้วยการตรวจสอบพหุคูณของจำนวนที่มากกว่า",
+    pseudocode: `เริ่มต้น
+รับค่า a, b
+larger = ค่ามากที่สุดของ(a, b)
 multiple = larger
-FOUND = FALSE
-WHILE FOUND = FALSE
-    IF multiple MOD a = 0 AND multiple MOD b = 0 THEN
-        FOUND = TRUE
-    ELSE
+found = เท็จ
+ทำซ้ำขณะที่ found = เท็จ
+    ถ้า multiple mod a = 0 และ multiple mod b = 0 แล้ว
+        found = จริง
+    มิฉะนั้น
         multiple = multiple + larger
-    END IF
-END WHILE
-OUTPUT multiple
-END`,
+    จบเงื่อนไข
+จบการทำซ้ำ
+แสดงผล multiple
+จบ`,
   },
   {
-    title: "Number Guessing Game",
-    description: "Repeatedly read a guess and compare it to a secret number, giving higher/lower hints until the guess is correct.",
-    pseudocode: `START
-INPUT secretNumber
-INPUT guess
-WHILE guess != secretNumber
-    IF guess < secretNumber THEN
-        OUTPUT "Too low"
-    ELSE
-        OUTPUT "Too high"
-    END IF
-    INPUT guess
-END WHILE
-OUTPUT "Correct!"
-END`,
+    title: "เกมทายตัวเลข",
+    description: "รับค่าตัวเลขที่ทายทีละครั้ง เปรียบเทียบกับตัวเลขลับ พร้อมบอกใบ้ว่าสูงไปหรือต่ำไป จนกว่าจะทายถูก",
+    pseudocode: `เริ่มต้น
+รับค่า secretNumber
+รับค่า guess
+ทำซ้ำขณะที่ guess != secretNumber
+    ถ้า guess < secretNumber แล้ว
+        แสดงผล "ต่ำไป"
+    มิฉะนั้น
+        แสดงผล "สูงไป"
+    จบเงื่อนไข
+    รับค่า guess
+จบการทำซ้ำ
+แสดงผล "ทายถูกต้อง!"
+จบ`,
   },
   {
-    title: "Total Distance From N Segments",
-    description: "Read how many trip segments will be entered, then read each segment's distance and calculate the total distance traveled.",
-    pseudocode: `START
-INPUT segmentCount
+    title: "หาระยะทางรวมจาก N ช่วงการเดินทาง",
+    description: "รับค่าจำนวนช่วงการเดินทาง แล้วรับระยะทางแต่ละช่วงเพื่อคำนวณระยะทางรวม",
+    pseudocode: `เริ่มต้น
+รับค่า segmentCount
 totalDistance = 0
-FOR i = 1 TO segmentCount
-    INPUT segmentDistance
+ทำซ้ำ i = 1 ถึง segmentCount
+    รับค่า segmentDistance
     totalDistance = totalDistance + segmentDistance
-END FOR
-OUTPUT totalDistance
-END`,
+จบการทำซ้ำ
+แสดงผล totalDistance
+จบ`,
   },
   {
-    title: "Fibonacci Values Below N",
-    description: "Read a limit N and print every Fibonacci number that is less than N.",
-    pseudocode: `START
-INPUT n
+    title: "แสดงค่าฟีโบนัชชีที่น้อยกว่า N",
+    description: "รับค่า N แล้วแสดงค่าในลำดับฟีโบนัชชีทุกค่าที่น้อยกว่า N",
+    pseudocode: `เริ่มต้น
+รับค่า n
 first = 0
 second = 1
-WHILE first < n
-    OUTPUT first
+ทำซ้ำขณะที่ first < n
+    แสดงผล first
     next = first + second
     first = second
     second = next
-END WHILE
-END`,
+จบการทำซ้ำ
+จบ`,
   },
 ];

@@ -34,14 +34,14 @@ export default function AdminLoginPage() {
 
   return (
     <main className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center px-4 py-10">
-      <h1 className="mb-1 text-xl font-bold">Admin Login</h1>
+      <h1 className="mb-1 text-xl font-bold">เข้าสู่ระบบผู้ดูแล</h1>
       <p className="mb-6 text-sm text-black/60 dark:text-white/60">
-        Sign in to manage problems and view statistics.
+        เข้าสู่ระบบเพื่อจัดการโจทย์และดูสถิติการใช้งาน
       </p>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div>
-          <label className="mb-1 block text-sm font-medium">Email</label>
+          <label className="mb-1 block text-sm font-medium">อีเมล</label>
           <input
             type="email"
             required
@@ -51,7 +51,7 @@ export default function AdminLoginPage() {
           />
         </div>
         <div>
-          <label className="mb-1 block text-sm font-medium">Password</label>
+          <label className="mb-1 block text-sm font-medium">รหัสผ่าน</label>
           <input
             type="password"
             required
@@ -72,7 +72,7 @@ export default function AdminLoginPage() {
           disabled={loading}
           className="mt-2 rounded-lg bg-black px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-black/80 disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-white/80"
         >
-          {loading ? "Signing in..." : "Sign in"}
+          {loading ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบ"}
         </button>
       </form>
     </main>

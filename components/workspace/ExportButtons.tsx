@@ -85,14 +85,14 @@ export default function ExportButtons({
         disabled={busy !== null}
         className="rounded-md border border-black/15 px-3 py-1.5 text-xs font-medium text-black/70 transition hover:border-black/40 disabled:opacity-50 dark:border-white/15 dark:text-white/70 dark:hover:border-white/40"
       >
-        {busy === "jpeg" ? "Exporting..." : "Export JPEG"}
+        {busy === "jpeg" ? "กำลังบันทึก..." : "บันทึกเป็น JPEG"}
       </button>
       <button
         onClick={exportPdf}
         disabled={busy !== null}
         className="rounded-md border border-black/15 px-3 py-1.5 text-xs font-medium text-black/70 transition hover:border-black/40 disabled:opacity-50 dark:border-white/15 dark:text-white/70 dark:hover:border-white/40"
       >
-        {busy === "pdf" ? "Exporting..." : "Export PDF"}
+        {busy === "pdf" ? "กำลังบันทึก..." : "บันทึกเป็น PDF"}
       </button>
     </div>
   );

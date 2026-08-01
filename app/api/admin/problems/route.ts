@@ -30,7 +30,7 @@ export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
   const valid = body && validateProblemBody(body);
   if (!valid) {
-    return NextResponse.json({ error: "Invalid problem data" }, { status: 400 });
+    return NextResponse.json({ error: "ข้อมูลโจทย์ไม่ถูกต้อง" }, { status: 400 });
   }
 
   const admin = createAdminClient();

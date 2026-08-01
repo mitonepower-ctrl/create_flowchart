@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Flowchart Learning",
-  description: "Learn to build flowcharts from pseudocode, with AI feedback.",
+  title: "เรียนรู้การสร้างโฟลว์ชาร์ต",
+  description: "ฝึกสร้างโฟลว์ชาร์ตจากซูโดโค้ด พร้อมคำแนะนำจาก AI",
 };
 
 export default function RootLayout({
@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="th"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex h-full flex-col">

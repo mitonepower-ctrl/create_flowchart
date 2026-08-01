@@ -16,8 +16,8 @@ export default function AdminNav() {
   }
 
   const links = [
-    { href: "/admin/dashboard", label: "Dashboard" },
-    { href: "/admin/problems", label: "Problems" },
+    { href: "/admin/dashboard", label: "แดชบอร์ด" },
+    { href: "/admin/problems", label: "จัดการโจทย์" },
   ];
 
   return (
@@ -41,7 +41,7 @@ export default function AdminNav() {
         onClick={signOut}
         className="text-sm font-medium text-black/50 hover:text-black dark:text-white/50 dark:hover:text-white"
       >
-        Sign out
+        ออกจากระบบ
       </button>
     </div>
   );

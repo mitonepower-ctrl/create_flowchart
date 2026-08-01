@@ -17,9 +17,9 @@ import AiPanel from "./AiPanel";
 import ExportButtons from "./ExportButtons";
 
 const TYPE_LABELS: Record<Problem["type"], string> = {
-  sequence: "Sequence",
-  condition: "Condition",
-  loop: "Loop",
+  sequence: "ลำดับ",
+  condition: "เงื่อนไข",
+  loop: "ทำซ้ำ",
 };
 
 const initialNodes: Node[] = [
@@ -27,13 +27,13 @@ const initialNodes: Node[] = [
     id: "start-1",
     type: "start",
     position: { x: 250, y: 20 },
-    data: { label: "Start" },
+    data: { label: "เริ่มต้น" },
   },
   {
     id: "end-1",
     type: "end",
     position: { x: 250, y: 380 },
-    data: { label: "End" },
+    data: { label: "จบ" },
   },
 ];
 
@@ -52,7 +52,7 @@ function WorkspaceInner({ problem }: { problem: Problem }) {
   }, []);
 
   function resetCanvas() {
-    if (!confirm("Clear the canvas and start over?")) return;
+    if (!confirm("ล้าง Canvas และเริ่มทำใหม่หรือไม่?")) return;
     setNodes(initialNodes);
     setEdges([]);
   }
@@ -65,7 +65,7 @@ function WorkspaceInner({ problem }: { problem: Problem }) {
             href="/"
             className="text-xs font-medium text-black/50 hover:underline dark:text-white/50"
           >
-            ← All problems
+            ← โจทย์ทั้งหมด
           </Link>
           <div className="mt-0.5 flex items-center gap-2">
             <h1 className="text-lg font-semibold">{problem.title}</h1>
@@ -79,7 +79,7 @@ function WorkspaceInner({ problem }: { problem: Problem }) {
             onClick={resetCanvas}
             className="rounded-md border border-black/15 px-3 py-1.5 text-xs font-medium text-black/70 transition hover:border-black/40 dark:border-white/15 dark:text-white/70 dark:hover:border-white/40"
           >
-            Clear canvas
+            ล้าง Canvas
           </button>
           <ExportButtons
             wrapperRef={wrapperRef}
@@ -93,7 +93,7 @@ function WorkspaceInner({ problem }: { problem: Problem }) {
         <div className="order-2 flex min-h-0 flex-col overflow-y-auto border-black/10 dark:border-white/10 lg:order-1 lg:border-r">
           <div className="p-4">
             <h2 className="text-sm font-semibold uppercase tracking-wide text-black/50 dark:text-white/50">
-              Problem
+              โจทย์
             </h2>
             <p className="mt-2 whitespace-pre-line text-sm leading-relaxed">
               {problem.description}
@@ -101,7 +101,7 @@ function WorkspaceInner({ problem }: { problem: Problem }) {
           </div>
           <div className="border-t border-black/10 p-4 dark:border-white/10">
             <h2 className="text-sm font-semibold uppercase tracking-wide text-black/50 dark:text-white/50">
-              Pseudocode
+              ซูโดโค้ด
             </h2>
             <pre className="mt-2 whitespace-pre-wrap rounded-md bg-black/5 p-3 font-mono text-xs leading-relaxed dark:bg-white/10">
               {problem.pseudocode}

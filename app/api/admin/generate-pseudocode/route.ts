@@ -21,7 +21,7 @@ export async function POST(request: Request) {
     typeof type !== "string"
   ) {
     return NextResponse.json(
-      { error: "title, description and type are required" },
+      { error: "กรุณากรอกชื่อโจทย์ รายละเอียด และประเภทให้ครบถ้วน" },
       { status: 400 }
     );
   }
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
   } catch (err) {
     console.error("Gemini generate-pseudocode error", err);
     return NextResponse.json(
-      { error: "AI generation failed. Please try again shortly." },
+      { error: "AI สร้างซูโดโค้ดไม่สำเร็จ กรุณาลองใหม่อีกครั้ง" },
       { status: 502 }
     );
   }

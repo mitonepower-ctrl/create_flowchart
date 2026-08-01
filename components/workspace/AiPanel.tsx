@@ -22,7 +22,7 @@ export default function AiPanel({
   async function checkAnswer() {
     const { nodes, edges } = getFlow();
     if (nodes.length === 0) {
-      setError("Build a flowchart on the canvas first.");
+      setError("กรุณาสร้างโฟลว์ชาร์ตบน Canvas ก่อน");
       setResult(null);
       return;
     }
@@ -46,7 +46,7 @@ export default function AiPanel({
       const data: EvaluateResult = await res.json();
       setResult(data);
     } catch {
-      setError("Could not reach the AI evaluator. Please try again.");
+      setError("ไม่สามารถเชื่อมต่อกับ AI ได้ กรุณาลองใหม่อีกครั้ง");
     } finally {
       setLoading(false);
     }
@@ -56,11 +56,11 @@ export default function AiPanel({
     <div className="flex h-full flex-col gap-4 overflow-y-auto p-4">
       <div>
         <h2 className="text-sm font-semibold uppercase tracking-wide text-black/50 dark:text-white/50">
-          AI Assistant
+          ผู้ช่วย AI
         </h2>
         <p className="mt-1 text-sm text-black/60 dark:text-white/60">
-          When you think your flowchart is correct, check it against the
-          pseudocode. The AI gives hints, not answers.
+          เมื่อคิดว่าโฟลว์ชาร์ตถูกต้องแล้ว กดตรวจคำตอบเพื่อเทียบกับซูโดโค้ด
+          AI จะให้คำใบ้ ไม่เฉลยคำตอบตรงๆ
         </p>
       </div>
 
@@ -69,7 +69,7 @@ export default function AiPanel({
         disabled={loading}
         className="rounded-lg bg-black px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-black/80 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-white/80"
       >
-        {loading ? "Checking..." : "Check Answer"}
+        {loading ? "กำลังตรวจ..." : "ตรวจคำตอบด้วย AI"}
       </button>
 
       {error && (
@@ -87,7 +87,7 @@ export default function AiPanel({
           }`}
         >
           <p className="mb-1 font-semibold">
-            {result.status === "pass" ? "Looks correct" : "Not quite yet"}
+            {result.status === "pass" ? "ถูกต้อง" : "ยังไม่ถูกต้อง"}
           </p>
           <p>{result.feedback}</p>
         </div>

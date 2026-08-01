@@ -3,14 +3,21 @@
 import { memo, useState, type CSSProperties } from "react";
 import { Handle, Position, useReactFlow, type NodeProps } from "@xyflow/react";
 
-export type FlowNodeKind = "start" | "process" | "decision" | "loop" | "end";
+export type FlowNodeKind =
+  | "start"
+  | "process"
+  | "io"
+  | "decision"
+  | "loop"
+  | "end";
 
 export const DEFAULT_LABELS: Record<FlowNodeKind, string> = {
-  start: "Start",
-  process: "Do something",
-  decision: "Condition?",
-  loop: "Repeat while...",
-  end: "End",
+  start: "เริ่มต้น",
+  process: "ประมวลผล",
+  io: "รับค่า / แสดงผล",
+  decision: "เงื่อนไข?",
+  loop: "กำหนดค่าเริ่มต้นการทำซ้ำ",
+  end: "จบ",
 };
 
 export const PALETTE_ITEMS: Array<{
@@ -18,11 +25,12 @@ export const PALETTE_ITEMS: Array<{
   label: string;
   hint: string;
 }> = [
-  { type: "start", label: "Start", hint: "Entry point" },
-  { type: "process", label: "Process", hint: "An action / assignment" },
-  { type: "decision", label: "Decision", hint: "If / branch" },
-  { type: "loop", label: "Loop", hint: "While / for" },
-  { type: "end", label: "End", hint: "Exit point" },
+  { type: "start", label: "เริ่มต้น", hint: "จุดเริ่มต้นของโฟลว์ชาร์ต" },
+  { type: "process", label: "ประมวลผล", hint: "คำสั่งประมวลผล / กำหนดค่าตัวแปร" },
+  { type: "io", label: "รับค่า/แสดงผล", hint: "รับข้อมูลเข้า หรือ แสดงผลข้อมูลออก" },
+  { type: "decision", label: "เงื่อนไข", hint: "ตัดสินใจแบบใช่/ไม่ใช่" },
+  { type: "loop", label: "ทำซ้ำ", hint: "กำหนดค่าเริ่มต้นของการทำซ้ำ (For/While)" },
+  { type: "end", label: "จบ", hint: "จุดสิ้นสุดของโฟลว์ชาร์ต" },
 ];
 
 function useLabelEditor(id: string, initialLabel: string) {
@@ -106,9 +114,7 @@ export const StartEndNode = memo(function StartEndNode({
           : "border-rose-500 bg-rose-50 text-rose-800 dark:bg-rose-950/40 dark:text-rose-300"
       }`}
     >
-      {isStart ? null : (
-        <Handle type="target" position={Position.Top} />
-      )}
+      {isStart ? null : <Handle type="target" position={Position.Top} />}
       {editing ? (
         <LabelEditor
           editing={editing}
@@ -158,6 +164,43 @@ export const ProcessNode = memo(function ProcessNode({
   );
 });
 
+// Input/Output - parallelogram, per flowchart convention.
+export const IoNode = memo(function IoNode({ id, data }: NodeProps) {
+  const label = (data.label as string) ?? DEFAULT_LABELS.io;
+  const { editing, draft, setDraft, start, commit, cancel } = useLabelEditor(
+    id,
+    label
+  );
+
+  return (
+    <div
+      onDoubleClick={start}
+      className="relative flex items-center justify-center"
+      style={{ ...baseBoxStyle, minHeight: 56 }}
+    >
+      <Handle type="target" position={Position.Top} />
+      <div
+        className="absolute inset-0 border-2 border-teal-500 bg-teal-50 shadow-sm dark:bg-teal-950/40"
+        style={{ transform: "skewX(-18deg)" }}
+      />
+      <div className="relative z-10 px-4 py-2.5 text-center text-sm font-medium text-teal-900 dark:text-teal-200">
+        {editing ? (
+          <LabelEditor
+            editing={editing}
+            draft={draft}
+            setDraft={setDraft}
+            commit={commit}
+            cancel={cancel}
+          />
+        ) : (
+          <span>{label}</span>
+        )}
+      </div>
+      <Handle type="source" position={Position.Bottom} />
+    </div>
+  );
+});
+
 export const DecisionNode = memo(function DecisionNode({
   id,
   data,
@@ -193,15 +236,17 @@ export const DecisionNode = memo(function DecisionNode({
       <Handle type="source" position={Position.Right} id="yes" />
       <Handle type="source" position={Position.Bottom} id="bottom" />
       <span className="pointer-events-none absolute left-1 top-1/2 -translate-y-1/2 -translate-x-full pr-1 text-[10px] font-semibold text-amber-700 dark:text-amber-400">
-        No
+        ไม่ใช่
       </span>
       <span className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 translate-x-full pl-1 text-[10px] font-semibold text-amber-700 dark:text-amber-400">
-        Yes
+        ใช่
       </span>
     </div>
   );
 });
 
+// Preparation/Loop - hexagon, used to set up loop counters (e.g. "FOR i = 1 TO n").
+// The actual repeat/exit branching is expressed with a separate Decision node.
 export const LoopNode = memo(function LoopNode({ id, data }: NodeProps) {
   const label = (data.label as string) ?? DEFAULT_LABELS.loop;
   const { editing, draft, setDraft, start, commit, cancel } = useLabelEditor(
@@ -212,31 +257,31 @@ export const LoopNode = memo(function LoopNode({ id, data }: NodeProps) {
   return (
     <div
       onDoubleClick={start}
-      style={baseBoxStyle}
-      className="relative flex items-center justify-center rounded-lg border-2 border-violet-500 bg-violet-50 px-4 py-3 text-center text-sm font-medium text-violet-900 shadow-sm dark:bg-violet-950/40 dark:text-violet-200"
+      className="relative flex items-center justify-center"
+      style={{ ...baseBoxStyle, minHeight: 64 }}
     >
-      <div className="absolute inset-x-2 top-1 border-t border-dashed border-violet-400" />
-      <div className="absolute inset-x-2 bottom-1 border-t border-dashed border-violet-400" />
       <Handle type="target" position={Position.Top} />
-      {editing ? (
-        <LabelEditor
-          editing={editing}
-          draft={draft}
-          setDraft={setDraft}
-          commit={commit}
-          cancel={cancel}
-        />
-      ) : (
-        <span>{label}</span>
-      )}
-      <Handle type="source" position={Position.Bottom} id="exit" />
-      <Handle type="source" position={Position.Right} id="repeat" />
-      <span className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 translate-x-full pl-1 text-[10px] font-semibold text-violet-700 dark:text-violet-400">
-        Repeat
-      </span>
-      <span className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full pt-1 text-[10px] font-semibold text-violet-700 dark:text-violet-400">
-        Exit
-      </span>
+      <div
+        className="absolute inset-0 border-2 border-violet-500 bg-violet-50 shadow-sm dark:bg-violet-950/40"
+        style={{
+          clipPath:
+            "polygon(20% 0%, 80% 0%, 100% 50%, 80% 100%, 20% 100%, 0% 50%)",
+        }}
+      />
+      <div className="relative z-10 px-5 py-2.5 text-center text-sm font-medium text-violet-900 dark:text-violet-200">
+        {editing ? (
+          <LabelEditor
+            editing={editing}
+            draft={draft}
+            setDraft={setDraft}
+            commit={commit}
+            cancel={cancel}
+          />
+        ) : (
+          <span>{label}</span>
+        )}
+      </div>
+      <Handle type="source" position={Position.Bottom} />
     </div>
   );
 });
@@ -245,6 +290,7 @@ export const nodeTypes = {
   start: StartEndNode,
   end: StartEndNode,
   process: ProcessNode,
+  io: IoNode,
   decision: DecisionNode,
   loop: LoopNode,
 };

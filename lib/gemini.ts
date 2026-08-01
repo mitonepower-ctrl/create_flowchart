@@ -20,29 +20,29 @@ export async function evaluateFlowchart(
 ): Promise<EvaluateResult> {
   const model = getModel();
 
-  const prompt = `You are a strict but encouraging programming teacher who teaches flowcharting to beginners.
+  const prompt = `คุณคือครูสอนการเขียนโปรแกรมคนไทย ใจดี สุภาพ และให้กำลังใจนักเรียนเสมอ แต่ก็ตรวจงานอย่างเข้มงวดและตรงไปตรงมา
 
-A student is working on this problem: "${problemTitle}"
+นักเรียนกำลังทำโจทย์ข้อนี้: "${problemTitle}"
 
-Reference pseudocode for the correct logic:
+ซูโดโค้ดที่ถูกต้องสำหรับใช้อ้างอิง:
 """
 ${pseudocode}
 """
 
-The student built the following flowchart, represented as React Flow nodes and edges in JSON. Each node has a "type" (start, process, decision, loop, end) and a "data.label" describing what it does. Edges connect nodes and may have a "label" (e.g. "Yes"/"No" out of a decision node).
+นักเรียนได้สร้างโฟลว์ชาร์ตต่อไปนี้ในรูปแบบ JSON ของ React Flow (nodes และ edges) แต่ละ node มี "type" เป็นหนึ่งใน start (เริ่มต้น), process (ประมวลผล), io (รับค่า/แสดงผล), decision (เงื่อนไข), loop (กำหนดค่าเริ่มต้นการทำซ้ำ), end (จบ) และมี "data.label" อธิบายสิ่งที่ node นั้นทำ ส่วน edges คือเส้นเชื่อมระหว่าง node ซึ่งอาจมี "label" กำกับทิศทาง (เช่น "ใช่"/"ไม่ใช่" ที่ออกจาก node เงื่อนไข)
 
-Flowchart JSON:
+ข้อมูลโฟลว์ชาร์ต (JSON):
 ${JSON.stringify(flowchart)}
 
-Evaluate whether the flowchart's logic and structure correctly implement the pseudocode. Check for: correct start/end nodes, correct sequencing, correct branching on decisions, correct loop structure and exit conditions, and no missing or dead-end steps.
+จงตรวจสอบว่าโครงสร้างและตรรกะของโฟลว์ชาร์ตนี้ตรงกับซูโดโค้ดหรือไม่ โดยพิจารณา: มีจุดเริ่มต้นและจุดสิ้นสุดที่ถูกต้อง, ลำดับขั้นตอนถูกต้อง, การแตกกิ่งเงื่อนไข (ใช่/ไม่ใช่) ถูกต้อง, โครงสร้างการทำซ้ำและเงื่อนไขการออกจากลูปถูกต้อง, และไม่มีขั้นตอนที่ขาดหายหรือเป็นทางตัน
 
-Respond ONLY with strict JSON in this exact shape, no markdown fences:
-{"status": "pass" or "fail", "feedback": "2-4 sentences of feedback"}
+ตอบกลับเป็น JSON เท่านั้น ตามรูปแบบนี้ (ห้ามใส่ markdown fence):
+{"status": "pass" หรือ "fail", "feedback": "คำแนะนำภาษาไทย 2-4 ประโยค"}
 
-Rules for feedback:
-- Be encouraging in tone, but honest about correctness.
-- If it fails, give a HINT about what's wrong or missing (e.g. "check what happens when the condition is false") - do NOT reveal the exact fixed flowchart or write the answer for them.
-- If it passes, briefly say why it's correct and optionally note one good practice.`;
+กฎในการให้ feedback (ต้องเป็นภาษาไทยเท่านั้น):
+- ใช้น้ำเสียงสุภาพและให้กำลังใจเสมอ แต่ตรงไปตรงมาเรื่องความถูกต้อง
+- ถ้า fail ให้ "คำใบ้" ว่าจุดไหนผิดหรือขาดอะไรไป (เช่น "ลองตรวจสอบว่าถ้าเงื่อนไขเป็นเท็จจะเกิดอะไรขึ้น") ห้ามเฉลยคำตอบที่ถูกต้องหรือบอกวิธีแก้ทั้งหมดตรงๆ
+- ถ้า pass ให้บอกสั้นๆ ว่าทำไมถึงถูกต้อง และอาจแนะนำแนวทางที่ดีเพิ่มเติมได้`;
 
   const result = await model.generateContent({
     contents: [{ role: "user", parts: [{ text: prompt }] }],
@@ -58,13 +58,12 @@ Rules for feedback:
     const feedback =
       typeof parsed.feedback === "string" && parsed.feedback.trim().length > 0
         ? parsed.feedback
-        : "The AI could not produce detailed feedback this time. Please try again.";
+        : "ขณะนี้ AI ไม่สามารถสร้างคำแนะนำโดยละเอียดได้ กรุณาลองใหม่อีกครั้ง";
     return { status, feedback };
   } catch {
     return {
       status: "fail",
-      feedback:
-        "The AI response could not be parsed. Please try checking your answer again.",
+      feedback: "ไม่สามารถประมวลผลคำตอบจาก AI ได้ กรุณาลองตรวจคำตอบอีกครั้ง",
     };
   }
 }
@@ -76,13 +75,16 @@ export async function generatePseudocode(
 ): Promise<string> {
   const model = getModel();
 
-  const prompt = `You write clear beginner-friendly pseudocode for a flowcharting course.
+  const typeLabel =
+    type === "sequence" ? "ลำดับ" : type === "condition" ? "เงื่อนไข" : "ทำซ้ำ";
 
-Problem type: ${type}
-Problem title: "${title}"
-Problem description: "${description}"
+  const prompt = `คุณเขียนซูโดโค้ด (pseudocode) ภาษาไทยที่ชัดเจน เข้าใจง่ายสำหรับผู้เริ่มต้นเรียนวิชาการสร้างโฟลว์ชาร์ต
 
-Write pseudocode for this problem using simple, numbered, language-agnostic steps (e.g. START, INPUT, IF/ELSE, WHILE/FOR, PROCESS, OUTPUT, END). Keep it concise - roughly 5 to 15 lines. Respond with ONLY the pseudocode text, no explanation, no markdown code fences.`;
+ประเภทของโจทย์: ${typeLabel}
+ชื่อโจทย์: "${title}"
+รายละเอียดโจทย์: "${description}"
+
+จงเขียนซูโดโค้ดสำหรับโจทย์นี้เป็นภาษาไทย โดยใช้คำสั่งมาตรฐานเรียงเป็นขั้นตอน เช่น เริ่มต้น, รับค่า, ถ้า...แล้ว/มิฉะนั้น, ทำซ้ำขณะที่/ทำซ้ำ...ถึง, แสดงผล, จบ ความยาวประมาณ 5-15 บรรทัด ตอบกลับเฉพาะเนื้อหาซูโดโค้ดเท่านั้น ห้ามมีคำอธิบายเพิ่มเติมหรือ markdown code fence`;
 
   const result = await model.generateContent(prompt);
   return result.response.text().trim();

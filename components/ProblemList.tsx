@@ -5,9 +5,9 @@ import Link from "next/link";
 import type { Problem, ProblemType } from "@/lib/types";
 
 const TYPE_LABELS: Record<ProblemType, string> = {
-  sequence: "Sequence",
-  condition: "Condition",
-  loop: "Loop",
+  sequence: "ลำดับ",
+  condition: "เงื่อนไข",
+  loop: "ทำซ้ำ",
 };
 
 const TYPE_COLORS: Record<ProblemType, string> = {
@@ -18,9 +18,9 @@ const TYPE_COLORS: Record<ProblemType, string> = {
 };
 
 function difficultyLabel(level: number) {
-  if (level <= 33) return "Easy";
-  if (level <= 66) return "Medium";
-  return "Hard";
+  if (level <= 33) return "ง่าย";
+  if (level <= 66) return "ปานกลาง";
+  return "ยาก";
 }
 
 export default function ProblemList({ problems }: { problems: Problem[] }) {
@@ -53,7 +53,7 @@ export default function ProblemList({ problems }: { problems: Problem[] }) {
                   : "border-black/15 text-black/70 hover:border-black/40 dark:border-white/15 dark:text-white/70 dark:hover:border-white/40"
               }`}
             >
-              {t === "all" ? "All types" : TYPE_LABELS[t]}
+              {t === "all" ? "ทั้งหมด" : TYPE_LABELS[t]}
             </button>
           ))}
         </div>
@@ -61,7 +61,7 @@ export default function ProblemList({ problems }: { problems: Problem[] }) {
           onClick={() => setSortDir((d) => (d === "asc" ? "desc" : "asc"))}
           className="rounded-full border border-black/15 px-3 py-1.5 text-sm font-medium text-black/70 hover:border-black/40 dark:border-white/15 dark:text-white/70 dark:hover:border-white/40"
         >
-          Difficulty: {sortDir === "asc" ? "Easy → Hard" : "Hard → Easy"}
+          ความยาก: {sortDir === "asc" ? "ง่าย → ยาก" : "ยาก → ง่าย"}
         </button>
       </div>
 
@@ -95,7 +95,7 @@ export default function ProblemList({ problems }: { problems: Problem[] }) {
 
       {filtered.length === 0 && (
         <p className="mt-10 text-center text-black/50 dark:text-white/50">
-          No problems found.
+          ไม่พบโจทย์ที่ตรงกับเงื่อนไข
         </p>
       )}
     </div>

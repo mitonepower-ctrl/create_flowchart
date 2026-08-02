@@ -36,17 +36,44 @@ export default function ExportButtons({
     if (!canvasNode || !sheetNode || !imgNode) return null;
 
     const { default: html2canvas } = await import("html2canvas-pro");
+    // React Flow renders edges/arrowheads as SVG styled entirely through an
+    // external stylesheet (no inline styles), which html2canvas can't see -
+    // edges come out invisible. dom-to-image-more renders via a real
+    // foreignObject + inlined stylesheet, so the browser's own SVG renderer
+    // draws the edges correctly. Used only for the flowchart snapshot.
+    const { default: domtoimage } = await import("dom-to-image-more");
 
     onExportingChange(true);
     try {
       fitView({ padding: 0.15, duration: 0 });
-      await new Promise((r) => requestAnimationFrame(() => r(null)));
-      await new Promise((r) => requestAnimationFrame(() => r(null)));
+      // Give React time to commit the exportMode-driven light-color re-render
+      // (triggered by onExportingChange above) before the DOM gets captured.
+      await new Promise((r) => setTimeout(r, 150));
 
-      const flowchartCanvas = await html2canvas(canvasNode, {
-        backgroundColor: "#ffffff",
+      const flowchartCanvas = await domtoimage.toCanvas(canvasNode, {
+        bgcolor: "#ffffff",
         scale: 2,
-        useCORS: true,
+        // React Flow's stylesheet gives each edge's <svg> an explicit
+        // `width: 300px; height: 150px` and relies on `overflow: visible`
+        // for paths that extend past that box - which doesn't reliably
+        // survive the capture pipeline for longer edges. `!important` inline
+        // styles are needed since a plain style/attribute change is beaten
+        // by that stylesheet rule's specificity.
+        adjustClonedNode: (node, clone, after) => {
+          if (after) return;
+          const el = node as Element;
+          if (
+            el.nodeType === 1 &&
+            el.tagName?.toLowerCase() === "svg" &&
+            el.parentElement?.classList.contains("react-flow__edges")
+          ) {
+            const cloneEl = clone as HTMLElement;
+            cloneEl.style.setProperty("width", "4000px", "important");
+            cloneEl.style.setProperty("height", "4000px", "important");
+            cloneEl.setAttribute("width", "4000");
+            cloneEl.setAttribute("height", "4000");
+          }
+        },
       });
 
       await new Promise<void>((resolve) => {

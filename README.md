@@ -2,7 +2,7 @@
 
 A full-stack app for practicing flowcharts: read a problem's pseudocode, build
 the matching flowchart on a drag-and-drop canvas, and get AI feedback from
-Gemini. Admins can log in to manage the 100-problem bank and view usage
+Gemini. Admins can log in to manage the 200-problem bank and view usage
 statistics.
 
 ## Tech stack
@@ -44,7 +44,7 @@ npm run seed
 
 `npm run seed` will:
 1. Create the admin auth user (`ADMIN_EMAIL` / `ADMIN_PASSWORD`) via the Supabase Auth admin API, if it doesn't already exist.
-2. Insert the 100 seed problems (34 sequence, 33 condition, 33 loop) if the `problems` table is empty.
+2. Insert the 200 seed problems (68 sequence, 66 condition, 66 loop) if the `problems` table is empty.
 
 It's safe to re-run — it skips work that's already done.
 
@@ -69,7 +69,7 @@ Visit `http://localhost:3000` for the student view, or
 - `components/workspace/` — React Flow canvas, node types, node palette, AI panel, export buttons
 - `lib/supabase/` — browser / server / admin (service-role) Supabase clients
 - `lib/gemini.ts` — Gemini prompt wrappers
-- `scripts/seed.mts` + `scripts/seed-data.ts` — seed script and the 100 problem definitions
+- `scripts/seed.mts` + `scripts/seed-data.ts` — seed script and the 200 problem definitions
 - `supabase/schema.sql` — database schema + RLS policies
 
 ## Deployment (Vercel)

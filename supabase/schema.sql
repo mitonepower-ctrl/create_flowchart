@@ -7,7 +7,7 @@ create table if not exists problems (
   id uuid primary key default gen_random_uuid(),
   title text not null,
   description text not null,
-  difficulty_level int not null check (difficulty_level between 1 and 100),
+  difficulty_level int not null check (difficulty_level between 1 and 200),
   type text not null check (type in ('sequence', 'condition', 'loop')),
   pseudocode text not null,
   created_at timestamptz not null default now()
@@ -43,3 +43,8 @@ create policy "Public can read problems"
 
 -- No policies on user_attempts for anon/authenticated: all access is via the
 -- service-role server client in API routes (admin stats, attempt recording).
+
+-- Migrating an existing database created before the difficulty scale widened
+-- from 1-100 to 1-200? Run this once:
+-- alter table problems drop constraint problems_difficulty_level_check;
+-- alter table problems add check (difficulty_level between 1 and 200);

@@ -85,9 +85,9 @@ async function seedProblems() {
   }
 
   const rows = [
-    ...buildProblems(sequenceProblems, "sequence", 1, 38),
-    ...buildProblems(conditionProblems, "condition", 15, 70),
-    ...buildProblems(loopProblems, "loop", 30, 100),
+    ...buildProblems(sequenceProblems, "sequence", 1, 76),
+    ...buildProblems(conditionProblems, "condition", 30, 140),
+    ...buildProblems(loopProblems, "loop", 60, 200),
   ];
 
   console.log(`Inserting ${rows.length} problems...`);

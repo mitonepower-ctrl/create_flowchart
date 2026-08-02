@@ -252,12 +252,12 @@ export default function ProblemsManager({
                 </div>
                 <div>
                   <label className="mb-1 block text-sm font-medium">
-                    ความยาก (1-100)
+                    ความยาก (1-200)
                   </label>
                   <input
                     type="number"
                     min={1}
-                    max={100}
+                    max={200}
                     value={form.difficulty_level}
                     onChange={(e) =>
                       setForm((f) =>

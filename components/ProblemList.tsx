@@ -18,14 +18,17 @@ const TYPE_COLORS: Record<ProblemType, string> = {
 };
 
 function difficultyLabel(level: number) {
-  if (level <= 33) return "ง่าย";
-  if (level <= 66) return "ปานกลาง";
+  if (level <= 66) return "ง่าย";
+  if (level <= 133) return "ปานกลาง";
   return "ยาก";
 }
+
+const PAGE_SIZE = 20;
 
 export default function ProblemList({ problems }: { problems: Problem[] }) {
   const [typeFilter, setTypeFilter] = useState<ProblemType | "all">("all");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
+  const [page, setPage] = useState(1);
 
   const filtered = useMemo(() => {
     const list =
@@ -39,6 +42,28 @@ export default function ProblemList({ problems }: { problems: Problem[] }) {
     );
   }, [problems, typeFilter, sortDir]);
 
+  const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const currentPage = Math.min(page, pageCount);
+  const paginated = filtered.slice(
+    (currentPage - 1) * PAGE_SIZE,
+    currentPage * PAGE_SIZE
+  );
+
+  function selectType(t: ProblemType | "all") {
+    setTypeFilter(t);
+    setPage(1);
+  }
+
+  function toggleSort() {
+    setSortDir((d) => (d === "asc" ? "desc" : "asc"));
+    setPage(1);
+  }
+
+  function changePage(p: number) {
+    setPage(Math.min(Math.max(p, 1), pageCount));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   return (
     <div>
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
@@ -46,7 +71,7 @@ export default function ProblemList({ problems }: { problems: Problem[] }) {
           {(["all", "sequence", "condition", "loop"] as const).map((t) => (
             <button
               key={t}
-              onClick={() => setTypeFilter(t)}
+              onClick={() => selectType(t)}
               className={`rounded-full border px-3 py-1.5 text-sm font-medium transition ${
                 typeFilter === t
                   ? "border-black bg-black text-white dark:border-white dark:bg-white dark:text-black"
@@ -58,15 +83,19 @@ export default function ProblemList({ problems }: { problems: Problem[] }) {
           ))}
         </div>
         <button
-          onClick={() => setSortDir((d) => (d === "asc" ? "desc" : "asc"))}
+          onClick={toggleSort}
           className="rounded-full border border-black/15 px-3 py-1.5 text-sm font-medium text-black/70 hover:border-black/40 dark:border-white/15 dark:text-white/70 dark:hover:border-white/40"
         >
           ความยาก: {sortDir === "asc" ? "ง่าย → ยาก" : "ยาก → ง่าย"}
         </button>
       </div>
 
+      <p className="mb-4 text-sm text-black/50 dark:text-white/50">
+        พบ {filtered.length} โจทย์ · หน้า {currentPage} จาก {pageCount}
+      </p>
+
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((problem) => (
+        {paginated.map((problem) => (
           <Link
             key={problem.id}
             href={`/problem/${problem.id}`}
@@ -80,7 +109,7 @@ export default function ProblemList({ problems }: { problems: Problem[] }) {
               </span>
               <span className="text-xs font-medium text-black/50 dark:text-white/50">
                 {difficultyLabel(problem.difficulty_level)} ·{" "}
-                {problem.difficulty_level}/100
+                {problem.difficulty_level}/200
               </span>
             </div>
             <h3 className="font-semibold leading-snug group-hover:underline">
@@ -97,6 +126,38 @@ export default function ProblemList({ problems }: { problems: Problem[] }) {
         <p className="mt-10 text-center text-black/50 dark:text-white/50">
           ไม่พบโจทย์ที่ตรงกับเงื่อนไข
         </p>
+      )}
+
+      {pageCount > 1 && (
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-1.5">
+          <button
+            onClick={() => changePage(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="rounded-md border border-black/15 px-3 py-1.5 text-sm font-medium text-black/70 hover:border-black/40 disabled:cursor-not-allowed disabled:opacity-40 dark:border-white/15 dark:text-white/70 dark:hover:border-white/40"
+          >
+            ก่อนหน้า
+          </button>
+          {Array.from({ length: pageCount }, (_, i) => i + 1).map((p) => (
+            <button
+              key={p}
+              onClick={() => changePage(p)}
+              className={`h-9 min-w-9 rounded-md border px-2 text-sm font-medium transition ${
+                p === currentPage
+                  ? "border-black bg-black text-white dark:border-white dark:bg-white dark:text-black"
+                  : "border-black/15 text-black/70 hover:border-black/40 dark:border-white/15 dark:text-white/70 dark:hover:border-white/40"
+              }`}
+            >
+              {p}
+            </button>
+          ))}
+          <button
+            onClick={() => changePage(currentPage + 1)}
+            disabled={currentPage === pageCount}
+            className="rounded-md border border-black/15 px-3 py-1.5 text-sm font-medium text-black/70 hover:border-black/40 disabled:cursor-not-allowed disabled:opacity-40 dark:border-white/15 dark:text-white/70 dark:hover:border-white/40"
+          >
+            ถัดไป
+          </button>
+        </div>
       )}
     </div>
   );

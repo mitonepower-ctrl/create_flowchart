@@ -11,7 +11,7 @@ export function validateProblemBody(body: Record<string, unknown>) {
     !pseudocode.trim() ||
     typeof difficulty_level !== "number" ||
     difficulty_level < 1 ||
-    difficulty_level > 100 ||
+    difficulty_level > 200 ||
     !["sequence", "condition", "loop"].includes(type as string)
   ) {
     return null;

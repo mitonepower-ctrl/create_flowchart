@@ -70,7 +70,7 @@ function WorkspaceInner({ problem }: { problem: Problem }) {
           <div className="mt-0.5 flex items-center gap-2">
             <h1 className="text-lg font-semibold">{problem.title}</h1>
             <span className="rounded-full bg-black/5 px-2 py-0.5 text-xs font-medium text-black/60 dark:bg-white/10 dark:text-white/60">
-              {TYPE_LABELS[problem.type]} · {problem.difficulty_level}/100
+              {TYPE_LABELS[problem.type]} · {problem.difficulty_level}/200
             </span>
           </div>
         </div>

@@ -13,6 +13,25 @@ function slugify(text: string) {
   );
 }
 
+// Belt-and-braces: the capture pipeline shells out to two third-party
+// rasterizers, so a stuck promise there (e.g. a font/image fetch that never
+// settles) shouldn't spin the "กำลังบันทึก..." state forever with no way out.
+function withTimeout<T>(promise: Promise<T>, ms: number, message: string) {
+  return new Promise<T>((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error(message)), ms);
+    promise.then(
+      (value) => {
+        clearTimeout(timer);
+        resolve(value);
+      },
+      (err) => {
+        clearTimeout(timer);
+        reject(err);
+      }
+    );
+  });
+}
+
 export default function ExportButtons({
   wrapperRef,
   problem,
@@ -23,6 +42,7 @@ export default function ExportButtons({
   onExportingChange: (exporting: boolean) => void;
 }) {
   const [busy, setBusy] = useState<"jpeg" | "pdf" | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const sheetRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const { fitView } = useReactFlow();
@@ -53,6 +73,15 @@ export default function ExportButtons({
       const flowchartCanvas = await domtoimage.toCanvas(canvasNode, {
         bgcolor: "#ffffff",
         scale: 2,
+        // Skips scanning every stylesheet in the document (including
+        // Next.js dev/Tailwind's large generated CSS) to find and fetch web
+        // fonts/images to embed. Neither is needed here - this is a small
+        // snapshot embedded into a separately-styled sheet, so an exact font
+        // match doesn't matter, and the canvas has no <img>s. This also
+        // trims one source of the delay a backgrounded/throttled browser
+        // tab can add to the capture (see the withTimeout wrapper below).
+        disableEmbedFonts: true,
+        disableInlineImages: true,
         // React Flow's stylesheet gives each edge's <svg> an explicit
         // `width: 300px; height: 150px` and relies on `overflow: visible`
         // for paths that extend past that box - which doesn't reliably
@@ -93,13 +122,22 @@ export default function ExportButtons({
 
   async function exportJpeg() {
     setBusy("jpeg");
+    setError(null);
     try {
-      const canvas = await buildCompositeCanvas();
+      const canvas = await withTimeout(
+        buildCompositeCanvas(),
+        20000,
+        "การสร้างไฟล์ใช้เวลานานเกินไป กรุณาลองใหม่อีกครั้ง"
+      );
       if (!canvas) return;
       const link = document.createElement("a");
       link.download = `${slugify(problem.title)}-flowchart.jpg`;
       link.href = canvas.toDataURL("image/jpeg", 0.95);
       link.click();
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "บันทึกไฟล์ JPEG ไม่สำเร็จ"
+      );
     } finally {
       setBusy(null);
     }
@@ -107,8 +145,13 @@ export default function ExportButtons({
 
   async function exportPdf() {
     setBusy("pdf");
+    setError(null);
     try {
-      const canvas = await buildCompositeCanvas();
+      const canvas = await withTimeout(
+        buildCompositeCanvas(),
+        20000,
+        "การสร้างไฟล์ใช้เวลานานเกินไป กรุณาลองใหม่อีกครั้ง"
+      );
       if (!canvas) return;
       const { default: jsPDF } = await import("jspdf");
       const orientation = canvas.width >= canvas.height ? "l" : "p";
@@ -126,6 +169,8 @@ export default function ExportButtons({
         canvas.height
       );
       pdf.save(`${slugify(problem.title)}-flowchart.pdf`);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "บันทึกไฟล์ PDF ไม่สำเร็จ");
     } finally {
       setBusy(null);
     }
@@ -133,7 +178,12 @@ export default function ExportButtons({
 
   return (
     <>
-      <div className="flex gap-2">
+      <div className="relative flex gap-2">
+        {error && (
+          <p className="absolute right-0 top-full z-10 mt-1.5 w-64 rounded-md border border-red-200 bg-red-50 p-2 text-xs text-red-700 shadow-sm dark:border-red-900/40 dark:bg-red-950/80 dark:text-red-300">
+            {error}
+          </p>
+        )}
         <button
           onClick={exportJpeg}
           disabled={busy !== null}
